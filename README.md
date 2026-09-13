@@ -58,7 +58,7 @@ DAX patterns and the PBIR layer in depth.
 ```bash
 git clone https://github.com/abdoulhamiddiallo/apex-f1-intelligence.git
 cd apex-f1-intelligence
-pip install -r requirements.txt        # Pillow + CairoSVG (needs the Cairo library)
+pip install -r requirements.txt        # Pillow + resvg-py, wheels only
 python build.py --check                # ~10 s: build, validate, rebuild, compare
 python tools/set_data_folder.py        # point the model at this clone's dist/data
 ```

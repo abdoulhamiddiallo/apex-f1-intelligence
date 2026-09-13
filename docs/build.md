@@ -3,9 +3,8 @@
 ## Requirements
 
 * Python 3.11 (any 3.10+ works; CI pins 3.11 so that the output is byte-identical)
-* the Cairo library for the SVG rasteriser: `sudo apt-get install libcairo2` on Debian and
-  Ubuntu, `brew install cairo` on macOS, on Windows the wheels of `cairocffi` need the GTK
-  runtime or `conda install cairo`
+* nothing else: the two Python dependencies (Pillow and resvg-py) ship as wheels for
+  Windows, macOS and Linux
 * Power BI Desktop (Windows) to open the result, with the **Power BI Project (.pbip)**
   preview feature enabled (File > Options > Preview features)
 
@@ -68,9 +67,9 @@ Everything that could break it has been pinned or removed:
 * **Ordering.** The steps run with `PYTHONHASHSEED=0`; every collection that reaches the
   output is a list or a sorted view.
 * **Randomness.** The background's speed streaks come from `random.seed(7)`.
-* **Rasterisation.** PNG bytes depend on Pillow's zlib and on Cairo's anti-aliasing.
-  `requirements.txt` pins Pillow (whose wheels bundle zlib) and CairoSVG; CI runs on
-  Ubuntu 24.04 whose `libcairo2` is 1.18.
+* **Rasterisation.** PNG bytes depend on the encoder and on the anti-aliasing of the SVG
+  rasteriser. `requirements.txt` pins Pillow (whose wheels bundle their own zlib) and
+  resvg-py (a pure Rust rasteriser shipped as a wheel), so no system library is involved.
 * **Timestamps.** Nothing writes a date. The "current season" is `YEAR_TO` from `apex/config.py`,
   not the clock.
 * **Line endings.** All generated text is LF; `.gitattributes` enforces it on checkout.
@@ -97,7 +96,6 @@ reject a commit where `dist/` and the source disagree.
 | Symptom | Cause | Fix |
 |---------|-------|-----|
 | `f1db archive checksum mismatch` | `data/raw/f1db-csv.zip` is not the pinned release | restore the file or update `apex/config.py` and `SHA256SUMS` together |
-| `OSError: no library called "cairo-2" was found` | Cairo runtime missing | install `libcairo2` (see Requirements) |
 | Power BI shows an empty model | `DataFolder` points to a folder without the CSV files | run `python tools/set_data_folder.py` or edit the parameter |
 | validation reports a truncated header | a column is narrower than its label at the header font size | widen the column in the `widths=` list of that `table(...)` call, keeping the sum under the visual width minus 45 |
 | CI fails on `git diff -- dist` | source changed without a rebuild, or `dist/` was edited by hand | run `python build.py --check` and commit the result |

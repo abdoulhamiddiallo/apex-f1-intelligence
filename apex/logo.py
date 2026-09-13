@@ -2,9 +2,10 @@
 """Render the APEX brand mark and navigation icons to PNG.
 
 Writes mark.png and ic_<name>_on.png / ic_<name>_off.png into ASSET_DIR
-for the report to embed; the wordmark SVG is exposed for other modules.
+for the report to embed.
 """
-import cairosvg, os
+import os
+import resvg_py
 from apex.config import ASSET_DIR, ensure_dirs
 ensure_dirs(); OUT=str(ASSET_DIR)
 RED='#F0503C'; INK='#F2F5FA'; DIM='#8892A4'; CY='#22D3EE'; ORA='#FF7A45'
@@ -30,15 +31,6 @@ MARK = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{
 def mark(w=100,h=100):
     return MARK.format(w=w,h=h,red=RED,ora=ORA,cy=CY)
 
-def wordmark(w=620,h=132):
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 132" width="{w}" height="{h}">
- <g transform="translate(0,10)">{mark(112,112)}</g>
- <text x="132" y="72" font-family="Bahnschrift SemiBold Condensed,Bahnschrift,Segoe UI,Arial" font-size="70" font-weight="700" fill="{INK}" letter-spacing="12">APEX</text>
- <rect x="134" y="82" width="30" height="5" fill="{RED}"/>
- <rect x="170" y="82" width="12" height="5" fill="{CY}"/>
- <text x="194" y="93" font-family="Segoe UI,Arial" font-size="16" font-weight="600" fill="{DIM}" letter-spacing="4.8">FORMULA ONE INTELLIGENCE</text>
-</svg>"""
-
 ICONS={
  'pulse':'<path d="M4 18 H12 L15 8 L20 28 L24 18 H32" fill="none" stroke="{c}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
  'circuit':'<path d="M9 26 C4 20 8 11 16 10 C25 9 27 16 22 19 C17 22 15 25 20 27 C24 28.6 29 26 29 21" fill="none" stroke="{c}" stroke-width="2.6" stroke-linecap="round"/>',
@@ -54,7 +46,10 @@ def icon(name,c,size=40):
     return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="%d" height="%d">%s</svg>'%(size,size,ICONS[name].format(c=c)))
 
 def png(svg,path,w,h):
-    cairosvg.svg2png(bytestring=svg.encode(),write_to=path,output_width=w,output_height=h)
+    # resvg is a pure Rust rasteriser shipped as a wheel: the same version renders the
+    # same bytes on every machine, which keeps the build reproducible across CI and laptops
+    with open(path,'wb') as f:
+        f.write(bytes(resvg_py.svg_to_bytes(svg_string=svg,width=w,height=h)))
 
 png(mark(), OUT+'/mark.png',384,384)
 for n in ICONS:

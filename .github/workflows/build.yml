@@ -21,24 +21,19 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip
-
-      - name: Install the Cairo rasteriser
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq libcairo2
 
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
       - name: Verify the bundled data archive
-        run: sha256sum -c data/raw/SHA256SUMS
+        run: cd data/raw && sha256sum -c SHA256SUMS
 
       - name: Build twice from scratch and validate
         run: python build.py --clean --check
@@ -58,7 +53,7 @@ jobs:
         run: python tools/repo_lint.py
 
       - name: Upload the Power BI project
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: APEX-pbip
           path: dist
