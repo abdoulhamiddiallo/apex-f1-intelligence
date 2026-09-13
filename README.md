@@ -111,12 +111,12 @@ pinned dependencies).
 
 | | |
 |---|---|
-| ![Race Results](docs/screenshots/08-race-results.png) | ![Teams](docs/screenshots/07-teams.png) |
-| ![Classic Eleven](docs/screenshots/02-classic-eleven.png) | ![Circuit Lab](docs/screenshots/03-circuit-lab.png) |
-| ![Drivers](docs/screenshots/04-drivers.png) | ![Constructors](docs/screenshots/05-constructors.png) |
-| ![Formula 1](docs/screenshots/06-formula-1.png) | ![Countries](docs/screenshots/09-countries.png) |
+| ![Race Results](docs/screenshots/02-race-results.png) | ![Teams](docs/screenshots/03-teams.png) |
+| ![Countries](docs/screenshots/04-countries.png) | ![Classic Eleven](docs/screenshots/05-classic-eleven.png) |
+| ![Circuit Lab](docs/screenshots/06-circuit-lab.png) | ![Drivers](docs/screenshots/07-drivers.png) |
+| ![Constructors](docs/screenshots/08-constructors.png) | ![Formula 1](docs/screenshots/09-formula-1.png) |
 
-Screenshots are Power BI Desktop's PDF export converted to PNG, not mock-ups.
+Screenshots are Power BI Desktop's own PDF export, rasterised and cropped to the canvas, not mock-ups.
 
 ## Repository
 

@@ -5,8 +5,9 @@ pages, each with its own accent colour: **Season** (coral), **Circuits** (cyan),
 (amber). Every page shares the same chrome: an eyebrow line, a large title, a one-line
 subtitle written by a measure or fixed text, a KPI strip, then two rows of panels.
 
-Screenshots come from Power BI Desktop's own PDF export (File > Export > PDF), converted
-page by page to PNG with `pdftoppm -r 110`; nothing is mocked up.
+Screenshots come from Power BI Desktop's own PDF export (File > Export > Export to PDF),
+rasterised page by page with `pdftoppm -r 110` and cropped to the canvas; nothing is mocked up.
+The numbering follows the navigation rail.
 
 ## Season
 
@@ -23,7 +24,7 @@ follows the slicer; nothing is hard-coded to a year.
 
 ### 2. Race Results
 
-![Race Results](screenshots/08-race-results.png)
+![Race Results](screenshots/02-race-results.png)
 
 Every Grand Prix of the selected season in two side-by-side tables (rounds 1 to 12, rounds
 13 to 24): round, host flag, Grand Prix, date, winner, winning team and race time. The split
@@ -32,7 +33,7 @@ scrolling.
 
 ### 3. Teams
 
-![Teams](screenshots/07-teams.png)
+![Teams](screenshots/03-teams.png)
 
 The grid of the selected season: each team with its championship position, points, wins,
 top-three finishes and driver line-up, plus championship points as bars in livery colours.
@@ -42,7 +43,7 @@ The line-up is concatenated by a measure, so a mid-season replacement appears au
 
 ### 4. Countries
 
-![Countries](screenshots/09-countries.png)
+![Countries](screenshots/04-countries.png)
 
 Every nation that has hosted a Grand Prix since 2014: flag, number of circuits used, number
 of Grands Prix since 2014, different winners and the year of the first Formula 1 visit ever,
@@ -50,7 +51,7 @@ in two ranked tables (host nations 1 to 14 and 15 to 27).
 
 ### 5. Classic Eleven
 
-![Classic Eleven](screenshots/02-classic-eleven.png)
+![Classic Eleven](screenshots/05-classic-eleven.png)
 
 Eleven heritage circuits, each drawn from its real geometry (an SVG path stored in the model),
 with host flag, nickname, length, corners, Grands Prix held since 2014, different winners and
@@ -58,7 +59,7 @@ the era's lap record. A bar chart compares the number of Grands Prix each one ha
 
 ### 6. Circuit Lab
 
-![Circuit Lab](screenshots/03-circuit-lab.png)
+![Circuit Lab](screenshots/06-circuit-lab.png)
 
 Pick one circuit from the list on the left and the page rebuilds itself: the outline as a
 scatter chart (so it inherits the theme and reacts to selection), the profile (length, turns,
@@ -71,7 +72,7 @@ and fastest lap.
 
 ### 7. Drivers
 
-![Drivers](screenshots/04-drivers.png)
+![Drivers](screenshots/07-drivers.png)
 
 A metric slicer (points, wins, podiums, poles, fastest laps, average finish, DNFs) and a
 season slicer re-rank the top 12 drivers as bars in livery colours. The Hall of Fame table
@@ -82,7 +83,7 @@ the last panel shows the average places gained on race day.
 
 ### 8. Constructors
 
-![Constructors](screenshots/05-constructors.png)
+![Constructors](screenshots/08-constructors.png)
 
 The constructor record of the era in two ranked tables (1 to 12, 13 to 24): team, race wins,
 podium finishes, pole positions and points, filtered by the season slicer. A stacked area
@@ -90,7 +91,7 @@ chart shows points by season per team, and a bar chart counts wins by engine man
 
 ### 9. Formula 1
 
-![Formula 1](screenshots/06-formula-1.png)
+![Formula 1](screenshots/09-formula-1.png)
 
 The era at a glance: seasons, Grands Prix, circuits, different winners and laps completed;
 the drivers' and constructors' champions of every season; who won what, season by season,
