@@ -1,0 +1,88 @@
+table F_FastestLap
+	lineageTag: 1e2b2cd7-d9f1-56d9-bac0-59c588188c2b
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: e8a3aa1f-3de1-51fb-bf44-cad0f228913e
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f4fdd7c2-c19c-53c2-9cda-411878258d5c
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriverId
+		dataType: string
+		isHidden
+		lineageTag: d11350a1-ff86-535c-b2f2-8d4a11bceba0
+		summarizeBy: none
+		sourceColumn: DriverId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorId
+		dataType: string
+		isHidden
+		lineageTag: 524c558e-6b69-5e5f-81fe-09e850583587
+		summarizeBy: none
+		sourceColumn: ConstructorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLRank
+		dataType: int64
+		formatString: 0
+		lineageTag: 17d9a1a1-a494-5953-ab38-fd6fbbde272c
+		summarizeBy: none
+		sourceColumn: FLRank
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a03cbe0-d49a-5468-a8c3-be357aeee270
+		summarizeBy: none
+		sourceColumn: LapNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapTimeMs
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 2eccc125-2c41-593f-b0d0-055307d2572c
+		summarizeBy: none
+		sourceColumn: LapTimeMs
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapTime
+		dataType: string
+		lineageTag: 2d2355b9-8c0c-52c2-b0e4-7d64d50aa949
+		summarizeBy: none
+		sourceColumn: LapTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_FastestLap = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_FastestLap.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"DriverId", type text}, {"ConstructorId", type text}, {"FLRank", Int64.Type}, {"LapNumber", Int64.Type}, {"LapTimeMs", type number}, {"LapTime", type text}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

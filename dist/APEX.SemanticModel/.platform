@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "APEX"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "176d1851-0d93-57c2-aef8-abfe7eda102c"
+  }
+}

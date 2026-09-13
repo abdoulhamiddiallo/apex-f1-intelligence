@@ -1,0 +1,14 @@
+﻿Year,SeasonLabel,Era,EraOrder,RoundsScheduled,RoundsRun,SeasonComplete,IsCurrentSeason,DriversChampionId,DriversChampion,DriversChampionPoints,ConstructorsChampionId,ConstructorsChampion,ConstructorsChampionPoints,SprintRaces
+2014,2014,V6 Hybrid I · 2014-2016,1,19,19,1,0,lewis-hamilton,Lewis Hamilton,384.0,mercedes,Mercedes,701.0,0
+2015,2015,V6 Hybrid I · 2014-2016,1,19,19,1,0,lewis-hamilton,Lewis Hamilton,381.0,mercedes,Mercedes,703.0,0
+2016,2016,V6 Hybrid I · 2014-2016,1,21,21,1,0,nico-rosberg,Nico Rosberg,385.0,mercedes,Mercedes,765.0,0
+2017,2017,V6 Hybrid II · 2017-2021,2,20,20,1,0,lewis-hamilton,Lewis Hamilton,363.0,mercedes,Mercedes,668.0,0
+2018,2018,V6 Hybrid II · 2017-2021,2,21,21,1,0,lewis-hamilton,Lewis Hamilton,408.0,mercedes,Mercedes,655.0,0
+2019,2019,V6 Hybrid II · 2017-2021,2,21,21,1,0,lewis-hamilton,Lewis Hamilton,413.0,mercedes,Mercedes,739.0,0
+2020,2020,V6 Hybrid II · 2017-2021,2,17,17,1,0,lewis-hamilton,Lewis Hamilton,347.0,mercedes,Mercedes,573.0,0
+2021,2021,V6 Hybrid II · 2017-2021,2,22,22,1,0,max-verstappen,Max Verstappen,395.5,mercedes,Mercedes,613.5,0
+2022,2022,Ground Effect · 2022-2025,3,22,22,1,0,max-verstappen,Max Verstappen,454.0,red-bull,Red Bull,759.0,0
+2023,2023,Ground Effect · 2022-2025,3,22,22,1,0,max-verstappen,Max Verstappen,575.0,red-bull,Red Bull,860.0,6
+2024,2024,Ground Effect · 2022-2025,3,24,24,1,0,max-verstappen,Max Verstappen,437.0,mclaren,McLaren,666.0,6
+2025,2025,Ground Effect · 2022-2025,3,24,24,1,0,lando-norris,Lando Norris,423.0,mclaren,McLaren,833.0,6
+2026,2026,New Formula · 2026-,4,23,13,0,1,kimi-antonelli,Kimi Antonelli,267.0,mercedes,Mercedes,468.0,6

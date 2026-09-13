@@ -1,0 +1,1151 @@
+table Metrics
+	lineageTag: 2c6dc41e-feae-5cbe-9a70-c64492bdef54
+
+	/// Number of driver race entries in context
+	measure 'Entries' = COUNTROWS ( F_Result )
+		formatString: #,0
+		lineageTag: 2f58067d-4055-5590-9625-1df001d7a786
+		displayFolder: 01 Race record
+
+	measure 'Grands Prix' = DISTINCTCOUNT ( F_Result[RaceKey] )
+		formatString: #,0
+		lineageTag: 48c326bf-ca9d-514d-a61a-61a1dd1097ce
+		displayFolder: 01 Race record
+
+	measure 'Wins' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsWin] = 1 )
+		formatString: #,0
+		lineageTag: 7c039eb6-2677-5c98-9995-0cf48a0531ee
+		displayFolder: 01 Race record
+
+	measure 'Podiums' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsPodium] = 1 )
+		formatString: #,0
+		lineageTag: a67fe7d0-8966-5994-b731-f3efda76d549
+		displayFolder: 01 Race record
+
+	measure 'Points' = SUM ( F_Result[Points] )
+		formatString: #,0
+		lineageTag: 52a93f58-102f-5688-96c3-93dfca6e91e1
+		displayFolder: 01 Race record
+
+	measure 'Poles' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsPole] = 1 )
+		formatString: #,0
+		lineageTag: 3431784d-483c-522d-b0d5-1640b68ef500
+		displayFolder: 01 Race record
+
+	measure 'Fastest Laps' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsFastestLap] = 1 )
+		formatString: #,0
+		lineageTag: 9de550b3-2c67-59b3-a5f8-a32797825ec5
+		displayFolder: 01 Race record
+
+	measure 'DNFs' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsDNF] = 1 )
+		formatString: #,0
+		lineageTag: b318346c-767d-5722-ae9e-d93457fa1e75
+		displayFolder: 01 Race record
+
+	measure 'Points Finishes' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsPoints] = 1 )
+		formatString: #,0
+		lineageTag: 3de966d2-ba06-56ea-a225-abe9a2f3c768
+		displayFolder: 01 Race record
+
+	measure 'Grand Slams' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsGrandSlam] = 1 )
+		formatString: #,0
+		lineageTag: 36de2973-701d-5e10-b81f-6dd2a876aedc
+		displayFolder: 01 Race record
+
+	measure 'Driver of the Day' = CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsDriverOfTheDay] = 1 )
+		formatString: #,0
+		lineageTag: a8ad2a26-6096-5cde-9c89-1f095b3de6aa
+		displayFolder: 01 Race record
+
+	measure 'Laps Completed' = SUM ( F_Result[LapsCompleted] )
+		formatString: #,0
+		lineageTag: ffe0548a-c8e5-53d1-a716-fb98585293c0
+		displayFolder: 01 Race record
+
+	measure 'Race Distance (km)' = SUMX ( VALUES ( D_Race[RaceKey] ), CALCULATE ( MAX ( D_Race[DistanceKm] ) ) )
+		formatString: #,0
+		lineageTag: 14b40465-8ef2-5a20-8d20-ff3808d27b90
+		displayFolder: 01 Race record
+
+	measure 'Sprint Wins' = CALCULATE ( COUNTROWS ( F_Sprint ), F_Sprint[IsSprintWin] = 1 )
+		formatString: #,0
+		lineageTag: af7300da-c930-5145-969e-ea6aa9e3ab0d
+		displayFolder: 01 Race record
+
+	measure 'Sprint Points' = SUM ( F_Sprint[SprintPoints] )
+		formatString: #,0.##
+		lineageTag: 743967ad-3a90-525c-9cc8-4df5c825483b
+		displayFolder: 01 Race record
+
+	measure 'Places Gained' = CALCULATE ( SUM ( F_Result[PositionsGained] ), F_Result[PositionsGained] > 0 )
+		formatString: #,0
+		lineageTag: 60621fa4-aaf9-5afa-82f8-0b0979edbb7c
+		displayFolder: 01 Race record
+
+	measure 'Win Rate' = DIVIDE ( [Wins], [Entries] )
+		formatString: 0.0%
+		lineageTag: 36f1f401-1674-5638-891e-3cdb0dd434ea
+		displayFolder: 02 Rates & averages
+
+	measure 'Podium Rate' = DIVIDE ( [Podiums], [Entries] )
+		formatString: 0.0%
+		lineageTag: ce547d77-4989-5d75-8870-577a9bbac249
+		displayFolder: 02 Rates & averages
+
+	measure 'Points Rate' = DIVIDE ( [Points Finishes], [Entries] )
+		formatString: 0.0%
+		lineageTag: 946e3e25-ff5b-5fef-b587-c6230607ac68
+		displayFolder: 02 Rates & averages
+
+	measure 'DNF Rate' = DIVIDE ( [DNFs], [Entries] )
+		formatString: 0.0%
+		lineageTag: 5eeb972a-8b7b-562e-9a58-ec6e93a8d396
+		displayFolder: 02 Rates & averages
+
+	measure 'Finish Rate' = DIVIDE ( [Entries] - [DNFs], [Entries] )
+		formatString: 0.0%
+		lineageTag: 25e7fb46-60cf-5fd3-91f0-90f60e331d63
+		displayFolder: 02 Rates & averages
+
+	measure 'Avg Finish' = AVERAGE ( F_Result[Position] )
+		formatString: 0.0
+		lineageTag: 94c6bb11-20d7-5141-b0ae-0eb7947f362e
+		displayFolder: 02 Rates & averages
+
+	measure 'Avg Grid' = AVERAGE ( F_Result[GridPosition] )
+		formatString: 0.0
+		lineageTag: 1060693a-8bca-59b8-9484-61f7b748296a
+		displayFolder: 02 Rates & averages
+
+	measure 'Avg Places Gained' = AVERAGE ( F_Result[PositionsGained] )
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 8f93292d-c438-51b2-aecf-013b03298d3a
+		displayFolder: 02 Rates & averages
+
+	measure 'Points per Race' = DIVIDE ( [Points], [Entries] )
+		formatString: 0.0
+		lineageTag: ebec83db-8cf5-5440-b304-9e47851effbe
+		displayFolder: 02 Rates & averages
+
+	measure 'Best Finish' = MIN ( F_Result[Position] )
+		formatString: 0
+		lineageTag: 3976523b-26a8-5d1d-96db-f0c434defa3e
+		displayFolder: 02 Rates & averages
+
+	measure 'Pole to Win %' = DIVIDE ( CALCULATE ( COUNTROWS ( F_Result ), F_Result[WinFromPole] = 1 ), CALCULATE ( COUNTROWS ( F_Result ), F_Result[StartedFromPole] = 1 ) )
+		formatString: 0.0%
+		lineageTag: d2e839d0-2b97-5257-9ed3-56be7e78d01d
+		displayFolder: 02 Rates & averages
+
+	measure 'Points Share %' = DIVIDE ( [Points], CALCULATE ( [Points], ALLSELECTED ( D_Driver ), ALLSELECTED ( D_Constructor ) ) )
+		formatString: 0.0%
+		lineageTag: 0fe4fd59-f4c0-50e3-a3f9-864dc6451c7e
+		displayFolder: 02 Rates & averages
+
+	measure 'Championship Points' = SUMX ( VALUES ( F_DriverStanding[Year] ), VAR r = CALCULATE ( MAX ( F_DriverStanding[Round] ) ) RETURN CALCULATE ( SUM ( F_DriverStanding[StandingPoints] ), F_DriverStanding[Round] = r ) )
+		formatString: #,0.##
+		lineageTag: 73a84a57-55b3-52f5-b8a2-6c87f07b9833
+		displayFolder: 03 Championship
+
+	measure 'Championship Position' = MINX ( VALUES ( F_DriverStanding[Year] ), VAR r = CALCULATE ( MAX ( F_DriverStanding[Round] ) ) RETURN CALCULATE ( MIN ( F_DriverStanding[StandingPosition] ), F_DriverStanding[Round] = r ) )
+		formatString: 0
+		lineageTag: 1046599a-ce4e-5bff-b901-122f0f3c12a7
+		displayFolder: 03 Championship
+
+	measure 'Team Championship Points' = SUMX ( VALUES ( F_ConstructorStanding[Year] ), VAR r = CALCULATE ( MAX ( F_ConstructorStanding[Round] ) ) RETURN CALCULATE ( SUM ( F_ConstructorStanding[StandingPoints] ), F_ConstructorStanding[Round] = r ) )
+		formatString: #,0.##
+		lineageTag: 92cb2fef-4e58-5d69-9ab0-e395b4cf0b7e
+		displayFolder: 03 Championship
+
+	measure 'Team Championship Position' = MINX ( VALUES ( F_ConstructorStanding[Year] ), VAR r = CALCULATE ( MAX ( F_ConstructorStanding[Round] ) ) RETURN CALCULATE ( MIN ( F_ConstructorStanding[StandingPosition] ), F_ConstructorStanding[Round] = r ) )
+		formatString: 0
+		lineageTag: 0d76c4f2-fce6-5fa7-927c-547f27062a70
+		displayFolder: 03 Championship
+
+	measure 'Drivers Titles' = CALCULATE ( COUNTROWS ( F_DriverStanding ), F_DriverStanding[ChampionshipWon] = 1, F_DriverStanding[IsLatestRound] = 1 )
+		formatString: 0
+		lineageTag: 5658c437-8b0c-5e9a-9ec9-48f02ba76417
+		displayFolder: 03 Championship
+
+	measure 'Constructors Titles' = CALCULATE ( COUNTROWS ( F_ConstructorStanding ), F_ConstructorStanding[ChampionshipWon] = 1, F_ConstructorStanding[IsLatestRound] = 1 )
+		formatString: 0
+		lineageTag: f56420b9-e6da-5c99-9d86-465bc80de323
+		displayFolder: 03 Championship
+
+	measure 'Running Points' = SUM ( F_DriverStanding[StandingPoints] )
+		formatString: #,0.##
+		lineageTag: 89192093-baab-5cf4-b8c1-a874b45ff089
+		displayFolder: 03 Championship
+
+	measure 'Team Running Points' = SUM ( F_ConstructorStanding[StandingPoints] )
+		formatString: #,0.##
+		lineageTag: 6ed46b2e-fa1f-548f-9238-6739fd012cd5
+		displayFolder: 03 Championship
+
+	measure 'Circuit Length (km)' = MAX ( D_Circuit[LengthKm] )
+		formatString: 0.000
+		lineageTag: ae98128a-0a08-5a03-8d7f-215af2a42424
+		displayFolder: 04 Circuit
+
+	measure 'Circuit Turns' = MAX ( D_Circuit[Turns] )
+		formatString: 0
+		lineageTag: adac4df2-7372-5448-b7de-2f493a175eda
+		displayFolder: 04 Circuit
+
+	measure 'Grands Prix Held' = CALCULATE ( DISTINCTCOUNT ( D_Race[RaceKey] ), D_Race[IsRun] = 1 )
+		formatString: #,0
+		lineageTag: 4f9b5cfb-d74a-5e28-a1a8-c5e50f94f16e
+		displayFolder: 04 Circuit
+
+	measure 'First Grand Prix' = MIN ( D_Circuit[FirstGrandPrix] )
+		formatString: 0
+		lineageTag: ba768f13-8be8-5e34-beef-84af98a9bd2b
+		displayFolder: 04 Circuit
+
+	measure 'Different Winners' = CALCULATE ( DISTINCTCOUNT ( F_Result[DriverId] ), F_Result[IsWin] = 1 )
+		formatString: 0
+		lineageTag: 2880912b-a693-5ece-aaff-cbd7ef158ea9
+		displayFolder: 04 Circuit
+
+	measure 'Different Winning Teams' = CALCULATE ( DISTINCTCOUNT ( F_Result[ConstructorId] ), F_Result[IsWin] = 1 )
+		formatString: 0
+		lineageTag: 3fbfed30-c819-5c4c-a5cc-e3f194ede1c0
+		displayFolder: 04 Circuit
+
+	measure 'Lap Record ms' = MIN ( F_FastestLap[LapTimeMs] )
+		formatString: #,0
+		lineageTag: e0149445-e417-518c-9f64-6ff4b232ef8d
+		displayFolder: 04 Circuit
+
+	measure 'Lap Record' = VAR ms = [Lap Record ms] RETURN IF ( ISBLANK ( ms ), "n/a", FORMAT ( INT ( ms / 60000 ), "0" ) & ":" & FORMAT ( INT ( MOD ( ms, 60000 ) / 1000 ), "00" ) & "." & FORMAT ( MOD ( ms, 1000 ), "000" ) )
+		lineageTag: 8405efc0-2ba3-5df8-b8b9-d5ee1995684c
+		displayFolder: 04 Circuit
+
+	measure 'Lap Record Holder' = VAR ms = [Lap Record ms] RETURN CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_FastestLap, D_Driver[Driver] ), D_Driver[Driver], ", " ), F_FastestLap[LapTimeMs] = ms )
+		lineageTag: acb97da9-888a-5b72-89a9-08c9afdc317f
+		displayFolder: 04 Circuit
+
+	measure 'Lap Record Year' = VAR ms = [Lap Record ms] RETURN CALCULATE ( MAX ( F_FastestLap[Year] ), F_FastestLap[LapTimeMs] = ms )
+		formatString: 0
+		lineageTag: 6339cf16-0e4d-5fb9-91fe-0fc163c9c606
+		displayFolder: 04 Circuit
+
+	measure 'Track Master' = VAR t = ADDCOLUMNS ( SUMMARIZE ( F_Result, D_Driver[Driver] ), "@w", CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsWin] = 1 ) ) VAR bestrow = TOPN ( 1, FILTER ( t, [@w] > 0 ), [@w], DESC, [Driver], ASC ) RETURN IF ( ISEMPTY ( bestrow ), "n/a", MAXX ( bestrow, [Driver] ) & " · " & FORMAT ( MAXX ( bestrow, [@w] ), "0" ) & " wins" )
+		lineageTag: 5cc88fa8-87b7-5bc8-84f1-383c4318998d
+		displayFolder: 04 Circuit
+
+	measure 'Track Master Team' = VAR t = ADDCOLUMNS ( SUMMARIZE ( F_Result, D_Constructor[Team] ), "@w", CALCULATE ( COUNTROWS ( F_Result ), F_Result[IsWin] = 1 ) ) VAR bestrow = TOPN ( 1, FILTER ( t, [@w] > 0 ), [@w], DESC, [Team], ASC ) RETURN IF ( ISEMPTY ( bestrow ), "n/a", MAXX ( bestrow, [Team] ) & " · " & FORMAT ( MAXX ( bestrow, [@w] ), "0" ) & " wins" )
+		lineageTag: 10f01235-6c73-5315-a3df-389cde770521
+		displayFolder: 04 Circuit
+
+	measure 'Circuit Profile' = VAR l = [Circuit Length (km)] VAR t = [Circuit Turns] VAR ty = SELECTEDVALUE ( D_Circuit[CircuitType] ) VAR d = SELECTEDVALUE ( D_Circuit[Direction] ) RETURN IF ( ISBLANK ( l ), "n/a", FORMAT ( l, "0.000" ) & " km · " & FORMAT ( t, "0" ) & " turns · " & ty & " · " & d )
+		lineageTag: 8831aa5b-f411-5331-9d36-a418e481a393
+		displayFolder: 04 Circuit
+
+	measure 'Rounds Scheduled' = DISTINCTCOUNT ( D_Race[RaceKey] )
+		formatString: 0
+		lineageTag: 6d4b98bc-deb0-59df-a347-9cc076fb9683
+		displayFolder: 05 Season pulse
+
+	measure 'Rounds Run' = CALCULATE ( DISTINCTCOUNT ( D_Race[RaceKey] ), D_Race[IsRun] = 1 )
+		formatString: 0
+		lineageTag: a4e8b974-8d20-5523-b93f-c39e43880320
+		displayFolder: 05 Season pulse
+
+	measure 'Rounds Remaining' = [Rounds Scheduled] - [Rounds Run]
+		formatString: 0
+		lineageTag: 6c0b8671-33ea-5ada-9ca7-230dd897436d
+		displayFolder: 05 Season pulse
+
+	measure 'Season Progress' = DIVIDE ( [Rounds Run], [Rounds Scheduled] )
+		formatString: 0%
+		lineageTag: 923b20f9-a7f5-5c8b-bc21-a8405e4f6b6b
+		displayFolder: 05 Season pulse
+
+	measure 'Championship Leader' = VAR t = ADDCOLUMNS ( VALUES ( D_Driver[Driver] ), "@p", [Championship Points] ) VAR bestrow = TOPN ( 1, FILTER ( t, [@p] > 0 ), [@p], DESC ) RETURN IF ( ISEMPTY ( bestrow ), "n/a", MAXX ( bestrow, [Driver] ) )
+		lineageTag: 1f4e37a5-a37b-592c-a9cb-3d67cd64450b
+		displayFolder: 05 Season pulse
+
+	measure 'Leader Points' = MAXX ( ADDCOLUMNS ( VALUES ( D_Driver[Driver] ), "@p", [Championship Points] ), [@p] )
+		formatString: #,0
+		lineageTag: a6385031-925a-5014-89c0-944605588284
+		displayFolder: 05 Season pulse
+
+	measure 'Gap to Second' = VAR t = ADDCOLUMNS ( VALUES ( D_Driver[Driver] ), "@p", [Championship Points] ) VAR pair = TOPN ( 2, FILTER ( t, [@p] > 0 ), [@p], DESC ) RETURN MAXX ( pair, [@p] ) - MINX ( pair, [@p] )
+		formatString: #,0
+		lineageTag: d7d3b7f8-93ef-5162-b72a-1b1c4e8256c4
+		displayFolder: 05 Season pulse
+
+	measure 'Leading Team' = VAR t = ADDCOLUMNS ( VALUES ( D_Constructor[Team] ), "@p", [Team Championship Points] ) VAR bestrow = TOPN ( 1, FILTER ( t, [@p] > 0 ), [@p], DESC ) RETURN IF ( ISEMPTY ( bestrow ), "n/a", MAXX ( bestrow, [Team] ) )
+		lineageTag: 6975c583-2602-5788-a60a-c7f27bfbdd0d
+		displayFolder: 05 Season pulse
+
+	measure 'Leading Team Points' = MAXX ( ADDCOLUMNS ( VALUES ( D_Constructor[Team] ), "@p", [Team Championship Points] ), [@p] )
+		formatString: #,0
+		lineageTag: 93043242-1f15-5583-bd88-b6601a862a25
+		displayFolder: 05 Season pulse
+
+	measure 'Last Race' = VAR k = CALCULATE ( MAX ( D_Race[SortKey] ), D_Race[IsRun] = 1 ) RETURN CALCULATE ( SELECTEDVALUE ( D_Race[GrandPrix] ), D_Race[SortKey] = k )
+		lineageTag: 76dce3c9-0b51-5995-a945-58b095db206e
+		displayFolder: 05 Season pulse
+
+	measure 'Last Race Winner' = VAR k = CALCULATE ( MAX ( D_Race[SortKey] ), D_Race[IsRun] = 1 ) RETURN CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Driver[Driver] ), D_Driver[Driver], ", " ), D_Race[SortKey] = k, F_Result[IsWin] = 1 )
+		lineageTag: 532644a7-40ac-5efc-bffb-a4234cc340f8
+		displayFolder: 05 Season pulse
+
+	measure 'Last Race Date' = VAR k = CALCULATE ( MAX ( D_Race[SortKey] ), D_Race[IsRun] = 1 ) RETURN CALCULATE ( SELECTEDVALUE ( D_Race[RaceDate] ), D_Race[SortKey] = k )
+		formatString: yyyy-mm-dd
+		lineageTag: e466328f-4280-5855-8b61-4d3df247e717
+		displayFolder: 05 Season pulse
+
+	measure 'Next Race' = VAR k = CALCULATE ( MIN ( D_Race[SortKey] ), D_Race[IsRun] = 0 ) RETURN IF ( ISBLANK ( k ), "Season complete", CALCULATE ( SELECTEDVALUE ( D_Race[GrandPrix] ), D_Race[SortKey] = k ) )
+		lineageTag: 62a4eeda-7254-5d70-9b23-7fcbef662a5c
+		displayFolder: 05 Season pulse
+
+	measure 'Next Race Circuit' = VAR k = CALCULATE ( MIN ( D_Race[SortKey] ), D_Race[IsRun] = 0 ) RETURN CALCULATE ( SELECTEDVALUE ( D_Race[Circuit] ), D_Race[SortKey] = k )
+		lineageTag: 5f3a3843-d3e9-5961-8eb4-837b470d135a
+		displayFolder: 05 Season pulse
+
+	measure 'Next Race Date' = VAR k = CALCULATE ( MIN ( D_Race[SortKey] ), D_Race[IsRun] = 0 ) RETURN CALCULATE ( SELECTEDVALUE ( D_Race[RaceDate] ), D_Race[SortKey] = k )
+		formatString: yyyy-mm-dd
+		lineageTag: befbfdff-2fe3-576a-a8dd-fa5ded0172a2
+		displayFolder: 05 Season pulse
+
+	measure 'Season Headline' = VAR l = [Championship Leader] VAR p = [Leader Points] VAR g = [Gap to Second] VAR r = [Rounds Remaining] RETURN IF ( ISBLANK ( p ), "n/a", l & " leads on " & FORMAT ( p, "#,0" ) & " points, " & FORMAT ( g, "#,0" ) & " clear, with " & FORMAT ( r, "0" ) & " rounds to run." )
+		lineageTag: 4ab489b2-f8fa-5cad-a13b-a520eabc0bbc
+		displayFolder: 05 Season pulse
+
+	measure 'Selected Metric' = SWITCH ( SELECTEDVALUE ( D_Metric[Metric], "Points" ), "Points", [Points], "Wins", [Wins], "Podiums", [Podiums], "Poles", [Poles], "Fastest laps", [Fastest Laps], "Avg finish", [Avg Finish], "DNFs", [DNFs] )
+		lineageTag: 8adbe836-1a3d-5d4f-87df-2c1750661e97
+		displayFolder: 06 Dynamic
+
+	measure 'Selected Metric Label' = SELECTEDVALUE ( D_Metric[Metric], "Points" )
+		lineageTag: 6fbe76e8-43c4-5471-b59c-cedc433c34f0
+		displayFolder: 06 Dynamic
+
+	measure 'Selected Metric Format' = SWITCH ( SELECTEDVALUE ( D_Metric[Metric], "Points" ), "Avg finish", "0.0", "#,0.##" )
+		lineageTag: d1a9b50f-981b-5abd-9a0b-b64f41415ae0
+		displayFolder: 06 Dynamic
+
+	measure 'Scope Filter' = IF ( SELECTEDVALUE ( D_Scope[Scope], "All circuits" ) = "Classic eleven", CALCULATE ( [Selected Metric], D_Race[IsClassicCircuit] = 1 ), [Selected Metric] )
+		lineageTag: 2231a417-563e-509e-b9c9-43928db47eea
+		displayFolder: 06 Dynamic
+
+	measure 'Scope Label' = SELECTEDVALUE ( D_Scope[ScopeDesc], "Every Grand Prix in the era" )
+		lineageTag: b509eb97-59b3-5c57-9e77-b9951fe5c6d2
+		displayFolder: 06 Dynamic
+
+	measure 'Team Colour' = COALESCE ( SELECTEDVALUE ( D_Constructor[TeamColour] ), "#7A8496" )
+		lineageTag: 79a2537f-f807-5bb7-a02a-7705b4b284a9
+		displayFolder: 07 Visual helpers
+
+	measure 'Driver Team Colour' = VAR t = ADDCOLUMNS ( SUMMARIZE ( F_Result, D_Constructor[TeamColour] ), "@n", CALCULATE ( COUNTROWS ( F_Result ) ) ) RETURN COALESCE ( MAXX ( TOPN ( 1, t, [@n], DESC ), [TeamColour] ), "#7A8496" )
+		lineageTag: 61dc6352-4550-55e4-a201-993a85cf4470
+		displayFolder: 07 Visual helpers
+
+	measure 'Track Blueprint' = VAR ok = HASONEVALUE ( D_Circuit[CircuitId] ) VAR pts = CONCATENATEX ( F_TrackPoint, FORMAT ( F_TrackPoint[X], "0.0" ) & " " & FORMAT ( - F_TrackPoint[Y], "0.0" ), " L ", F_TrackPoint[PointOrder], ASC ) RETURN IF ( NOT ok || ISBLANK ( pts ), BLANK (), "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-112 -112 224 224' width='620' height='620'><path d='M " & pts & " Z' fill='none' stroke='%2320252F' stroke-width='21' stroke-linejoin='round' stroke-linecap='round'/><path d='M " & pts & " Z' fill='none' stroke='%23E9EDF5' stroke-width='10' stroke-linejoin='round' stroke-linecap='round'/><path d='M " & pts & " Z' fill='none' stroke='%23E8323C' stroke-width='1.6' stroke-dasharray='3 8' stroke-linecap='round'/></svg>" )
+		lineageTag: 863bdffb-30cb-566e-915b-3c2407f0ae25
+		displayFolder: 07 Visual helpers
+		dataCategory: ImageUrl
+
+	measure 'Selected Circuit' = COALESCE ( SELECTEDVALUE ( D_Circuit[Circuit] ), "All circuits" )
+		lineageTag: ec95644c-0cee-5b36-b79c-793f6749043d
+		displayFolder: 07 Visual helpers
+
+	measure 'Selected Circuit Nickname' = COALESCE ( SELECTEDVALUE ( D_Circuit[Nickname] ), "" )
+		lineageTag: d82a85ad-1589-5a65-9fe6-12ad6ed73dbf
+		displayFolder: 07 Visual helpers
+
+	measure 'Signature Corner' = COALESCE ( SELECTEDVALUE ( D_Circuit[SignatureCorner] ), "n/a" )
+		lineageTag: 79786de1-1672-5b99-bed8-498727496159
+		displayFolder: 07 Visual helpers
+
+	measure 'Selected Season' = COALESCE ( SELECTEDVALUE ( D_Season[SeasonLabel] ), "2014 to 2026" )
+		lineageTag: 404c8304-53ae-57fc-99f9-08569e154429
+		displayFolder: 07 Visual helpers
+
+	measure 'Pole Time ms' = MIN ( F_Qualifying[BestQualiMs] )
+		formatString: #,0
+		lineageTag: 8396d045-0aa2-5af0-baf0-e3357f7f29e9
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Pole Time' = VAR ms = [Pole Time ms] RETURN IF ( ISBLANK ( ms ), "n/a", FORMAT ( INT ( ms / 60000 ), "0" ) & ":" & FORMAT ( INT ( MOD ( ms, 60000 ) / 1000 ), "00" ) & "." & FORMAT ( MOD ( ms, 1000 ), "000" ) )
+		lineageTag: 07fc708e-8fa0-57b2-9141-8be9de836039
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Q3 Appearances' = CALCULATE ( COUNTROWS ( F_Qualifying ), F_Qualifying[ReachedQ3] = 1 )
+		formatString: #,0
+		lineageTag: 7624e4e1-872d-549b-bf5d-91a7314f1a0e
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Q3 Rate' = DIVIDE ( [Q3 Appearances], COUNTROWS ( F_Qualifying ) )
+		formatString: 0.0%
+		lineageTag: bd7961f7-53a9-514b-aa30-871d12665a9f
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Avg Quali Gap (s)' = AVERAGEX ( F_Qualifying, DIVIDE ( F_Qualifying[GapToPoleMs], 1000 ) )
+		formatString: 0.000
+		lineageTag: f6663438-c0af-50f4-a04c-b1ced582970d
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Avg Quali Position' = AVERAGE ( F_Qualifying[QualiPosition] )
+		formatString: 0.0
+		lineageTag: 39befb7d-8d6f-5a7b-8f2e-2604d29fecfb
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Pit Stops' = SUM ( F_Result[PitStops] )
+		formatString: #,0
+		lineageTag: 1803cc9b-accb-5c85-b74e-1e0d342a888d
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Avg Pit Stops' = AVERAGE ( F_Result[PitStops] )
+		formatString: 0.00
+		lineageTag: 33ed6559-04c2-5eff-9a16-8704216aed72
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Fastest Pit Stop (s)' = DIVIDE ( MIN ( F_Result[BestPitStopMs] ), 1000 )
+		formatString: 0.00
+		lineageTag: 82d1ad3f-4710-562b-a117-91c23dc62d2f
+		displayFolder: 08 Qualifying & pit lane
+
+	measure 'Leader Sub' = VAR p = [Leader Points] VAR g = [Gap to Second] RETURN IF ( ISBLANK ( p ), "n/a", FORMAT ( p, "#,0" ) & " pts · +" & FORMAT ( g, "#,0" ) & " on P2" )
+		lineageTag: 8a17423b-b3ed-567c-bf05-0bc7dbc08347
+		displayFolder: 05 Season pulse
+
+	measure 'Team Sub' = VAR p = [Leading Team Points] RETURN IF ( ISBLANK ( p ), "n/a", FORMAT ( p, "#,0" ) & " pts" )
+		lineageTag: fe753d4e-7c2b-5621-88c0-bfbc95eb4383
+		displayFolder: 05 Season pulse
+
+	measure 'Round Line' = "Round " & FORMAT ( [Rounds Run], "0" ) & " of " & FORMAT ( [Rounds Scheduled], "0" )
+		lineageTag: 9434bea0-99a2-52c6-9098-300f0de79f1a
+		displayFolder: 05 Season pulse
+
+	measure 'Winners Sub' = FORMAT ( [Different Winners], "0" ) & " winners · " & FORMAT ( [Different Winning Teams], "0" ) & " winning teams"
+		lineageTag: 70ae3163-dfc7-5c77-b471-86607ce99224
+		displayFolder: 05 Season pulse
+
+	measure 'Last GP Sub' = VAR d = [Last Race Date] RETURN IF ( ISBLANK ( d ), "n/a", [Last Race] & " · " & FORMAT ( d, "d mmm yyyy" ) )
+		lineageTag: 14d4c837-595a-59b0-baf1-55aed964bc7e
+		displayFolder: 05 Season pulse
+
+	measure 'Next GP Sub' = VAR d = [Next Race Date] RETURN IF ( ISBLANK ( d ), "Season complete", [Next Race Circuit] & " · " & FORMAT ( d, "d mmm yyyy" ) )
+		lineageTag: aa650b36-2ea0-5dcb-a25c-07013e6cc333
+		displayFolder: 05 Season pulse
+
+	measure 'Era Footnote' = "Source: f1db open dataset · circuit geometry from the f1-circuits dataset · 2014-2026 hybrid era · built with Power BI"
+		lineageTag: 2050ebe8-f898-5597-83b7-ef3c45d59ed8
+		displayFolder: 07 Visual helpers
+
+	measure 'Lap Record Line' = VAR t = [Lap Record] RETURN IF ( t = "n/a", "n/a", [Lap Record Holder] & " · " & FORMAT ( [Lap Record Year], "0" ) )
+		lineageTag: 69adea7b-aa50-5214-afc2-a61859dcbae1
+		displayFolder: 04 Circuit
+
+	measure 'Track Length Total' = SUMX ( VALUES ( D_Circuit[CircuitId] ), CALCULATE ( MAX ( D_Circuit[LengthKm] ) ) )
+		formatString: #,0.0
+		lineageTag: ee04f4ec-10bf-56fc-aed1-81d742980cc4
+		displayFolder: 04 Circuit
+
+	measure 'Total Turns' = SUMX ( VALUES ( D_Circuit[CircuitId] ), CALCULATE ( MAX ( D_Circuit[Turns] ) ) )
+		formatString: #,0
+		lineageTag: edf0bbcb-ef35-5bc7-b31f-1173cfdee56a
+		displayFolder: 04 Circuit
+
+	measure 'Circuits' = DISTINCTCOUNT ( D_Circuit[CircuitId] )
+		formatString: 0
+		lineageTag: c346f064-9d13-5fcb-a2df-ecaf50e895a8
+		displayFolder: 04 Circuit
+
+	measure 'Circuit Headline' = VAR c = SELECTEDVALUE ( D_Circuit[Circuit] ) VAR n = SELECTEDVALUE ( D_Circuit[Nickname] ) RETURN IF ( ISBLANK ( c ), "Select a circuit", IF ( n = "", c, n ) )
+		lineageTag: a528ba2c-a82f-5b4c-8dff-4e4b52993b71
+		displayFolder: 07 Visual helpers
+
+	measure 'Seasons Covered' = DISTINCTCOUNT ( D_Race[Year] )
+		formatString: 0
+		lineageTag: b26f6320-ea56-5e1c-87c9-e68405ba4b76
+		displayFolder: 01 Race record
+
+	measure 'Driver Rank' = RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Points],, DESC )
+		formatString: 0
+		lineageTag: 1dffe321-1147-5d3b-b64c-d3dc4c7b2e81
+		displayFolder: 09 Leaderboard
+
+	measure 'Team Rank' = RANKX ( ALLSELECTED ( D_Constructor[Team] ), [Points],, DESC )
+		formatString: 0
+		lineageTag: e3100e33-c4bf-5e4b-9ca5-37a221dccf82
+		displayFolder: 09 Leaderboard
+
+	measure 'Top 15 Points' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Points],, DESC ) <= 15, [Points] )
+		formatString: #,0
+		lineageTag: 118de01d-12cb-53bc-a973-7562d33d60ea
+		displayFolder: 09 Leaderboard
+
+	measure 'Top 15 Metric' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Selected Metric],, DESC ) <= 15, [Selected Metric] )
+		lineageTag: 70b881ac-eaa1-5cc3-bfaf-587fed540939
+		displayFolder: 09 Leaderboard
+
+	measure 'Top 12 Wins' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Wins],, DESC ) <= 12 && [Wins] > 0, [Wins] )
+		formatString: #,0
+		lineageTag: 3a01a367-a777-5f7e-9b49-fe1ae689f67e
+		displayFolder: 09 Leaderboard
+
+	measure 'Top 12 Poles' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Poles],, DESC ) <= 12 && [Poles] > 0, [Poles] )
+		formatString: #,0
+		lineageTag: f68a3deb-82a5-5dc1-be6c-1a1ddb40b511
+		displayFolder: 09 Leaderboard
+
+	measure 'Top 12 Podiums' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Podiums],, DESC ) <= 12 && [Podiums] > 0, [Podiums] )
+		formatString: #,0
+		lineageTag: ecf21e57-f1a0-5005-a8f9-1f6b660899e0
+		displayFolder: 09 Leaderboard
+
+	measure 'Wins Here' = IF ( [Wins] > 0, [Wins] )
+		formatString: #,0
+		lineageTag: be373daf-31b0-5d13-8e7f-4859e264c9b4
+		displayFolder: 09 Leaderboard
+
+	measure 'Podiums Here' = IF ( [Podiums] > 0, [Podiums] )
+		formatString: #,0
+		lineageTag: 1e043dc6-abcf-59c7-82ef-ea95a08b516f
+		displayFolder: 09 Leaderboard
+
+	measure 'Driver Points (min 10 starts)' = IF ( [Entries] >= 10, [Points] )
+		formatString: #,0
+		lineageTag: 240b0fad-2f31-5e50-836c-171e71d6a15a
+		displayFolder: 09 Leaderboard
+
+	measure 'Avg Finish (min 60 starts)' = IF ( [Entries] >= 60, [Avg Finish] )
+		formatString: 0.0
+		lineageTag: aee522c2-fea4-5353-a241-dfe5caa7a6ba
+		displayFolder: 09 Leaderboard
+
+	measure 'Avg Grid (min 60 starts)' = IF ( [Entries] >= 60, [Avg Grid] )
+		formatString: 0.0
+		lineageTag: b4fd181f-3b7a-59e8-a3cb-543b2afb544b
+		displayFolder: 09 Leaderboard
+
+	measure 'Race Winner' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Driver[Driver] ), D_Driver[Driver], ", " ), F_Result[IsWin] = 1 )
+		lineageTag: fc910179-cf54-5123-8e6b-04f2694fb931
+		displayFolder: 10 Race cards
+
+	measure 'Winning Team' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Constructor[Team] ), D_Constructor[Team], ", " ), F_Result[IsWin] = 1 )
+		lineageTag: f8df4932-de07-5920-aa9b-3151b6c8489b
+		displayFolder: 10 Race cards
+
+	measure 'Pole Sitter' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Driver[Driver] ), D_Driver[Driver], ", " ), F_Result[IsPole] = 1 )
+		lineageTag: 2d85297a-c3f5-569b-9114-c0fd8cf98623
+		displayFolder: 10 Race cards
+
+	measure 'Fastest Lap By' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Driver[Driver] ), D_Driver[Driver], ", " ), F_Result[IsFastestLap] = 1 )
+		lineageTag: a3a55d6d-664d-56c4-8ed8-f8f3f9a35cee
+		displayFolder: 10 Race cards
+
+	measure 'Winning Margin' = VAR g = CALCULATE ( MIN ( F_Result[GapMillis] ), F_Result[Position] = 2 ) RETURN IF ( ISBLANK ( g ), "n/a", FORMAT ( g / 1000, "0.000" ) & " s" )
+		lineageTag: 4b414995-7084-52a3-bd4f-696594d6ec86
+		displayFolder: 10 Race cards
+
+	measure 'HoF Wins' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Wins],, DESC ) <= 10 && [Wins] > 0, [Wins] )
+		formatString: #,0
+		lineageTag: 1365f7c3-911d-544f-b261-fd57f8d2e20f
+		displayFolder: 10 Race cards
+
+	measure 'HoF Poles' = IF ( NOT ISBLANK ( [HoF Wins] ), [Poles] + 0 )
+		formatString: #,0
+		lineageTag: 40102700-d62a-5c65-92ad-68c97d63a965
+		displayFolder: 10 Race cards
+
+	measure 'HoF Podiums' = IF ( NOT ISBLANK ( [HoF Wins] ), [Podiums] + 0 )
+		formatString: #,0
+		lineageTag: 1f8164e8-4875-5028-b352-44d3a6cd7850
+		displayFolder: 10 Race cards
+
+	measure 'HoF Titles' = IF ( NOT ISBLANK ( [HoF Wins] ), [Drivers Titles] )
+		formatString: 0
+		lineageTag: 93ec98c1-77c3-57bc-961b-ef085dd5cf07
+		displayFolder: 10 Race cards
+
+	measure 'HoF Points' = IF ( NOT ISBLANK ( [HoF Wins] ), [Points] )
+		formatString: #,0
+		lineageTag: 41bfcb8b-6248-5a37-861f-479d294f86b5
+		displayFolder: 10 Race cards
+
+	measure 'HoF Win Rate' = IF ( NOT ISBLANK ( [HoF Wins] ), [Win Rate] )
+		formatString: 0.0%
+		lineageTag: bf336194-a9a9-58ce-8d3d-fc3e600bb423
+		displayFolder: 10 Race cards
+
+	measure 'Busy Places Gained' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Entries],, DESC ) <= 15, [Avg Places Gained] )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 8dab05c0-53ca-56b6-ba8e-70c10a992164
+		displayFolder: 10 Race cards
+
+	measure 'Retirements per Race' = DIVIDE ( [DNFs], [Grands Prix] )
+		formatString: 0.00
+		lineageTag: 8a2f2bf0-234c-5f5b-8df6-1278e30061be
+		displayFolder: 02 Rates & averages
+
+	measure 'Default Season' = IF ( ISFILTERED ( D_Season[SeasonLabel] ), BLANK ( ), CALCULATE ( MAX ( D_Season[Year] ), REMOVEFILTERS ( D_Season ), D_Season[IsCurrentSeason] = 1 ) )
+		formatString: 0
+		lineageTag: 8957f11a-5a55-5ad3-a588-d4b62857f303
+		displayFolder: 11 Scope
+
+	measure 'Default Circuit' = IF ( ISFILTERED ( D_Circuit[Circuit] ), BLANK ( ), "monza" )
+		lineageTag: 57a85fa8-208a-587c-bb63-7027ec53b5eb
+		displayFolder: 11 Scope
+
+	measure 'Season points' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Championship Points], CALCULATE ( [Championship Points], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: 878b6a62-8044-5e37-b87b-2130b37ed3e5
+		displayFolder: 12 Live season
+
+	measure 'Team points' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Team Championship Points], CALCULATE ( [Team Championship Points], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: 47c41d82-1966-5d0a-a544-651bb262804b
+		displayFolder: 12 Live season
+
+	measure 'Running team points' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Team Running Points], CALCULATE ( [Team Running Points], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: d4393044-30c9-50b5-afe0-bdc276cf7564
+		displayFolder: 12 Live season
+
+	measure 'Season wins' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Top 12 Wins], CALCULATE ( [Top 12 Wins], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: 7f0df714-7c41-54d3-b0dd-aeb2a7252655
+		displayFolder: 12 Live season
+
+	measure 'Season poles' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Top 12 Poles], CALCULATE ( [Top 12 Poles], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: 4d3215f4-36d1-5c13-8a46-aac64ecfb4bd
+		displayFolder: 12 Live season
+
+	measure 'Live Leader' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Championship Leader], CALCULATE ( [Championship Leader], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: cba95756-b980-5cf6-8b8a-6dc44334ee57
+		displayFolder: 12 Live season
+
+	measure 'Live Leader Sub' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Leader Sub], CALCULATE ( [Leader Sub], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: ff05b3d2-9a56-5208-b8d6-18cd9b15a099
+		displayFolder: 12 Live season
+
+	measure 'Live Team' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Leading Team], CALCULATE ( [Leading Team], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: ca939a0b-2bed-5aa7-94f7-8f858495b0f8
+		displayFolder: 12 Live season
+
+	measure 'Live Team Sub' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Team Sub], CALCULATE ( [Team Sub], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 2e605b06-b01a-5292-8edc-d4cfd828b637
+		displayFolder: 12 Live season
+
+	measure 'Live Last Winner' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Last Race Winner], CALCULATE ( [Last Race Winner], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: f1a95bd3-5e8f-513f-9640-6469d65e8636
+		displayFolder: 12 Live season
+
+	measure 'Live Last GP Sub' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Last GP Sub], CALCULATE ( [Last GP Sub], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 50259ebc-da97-5aa4-8bc0-4c33169f084d
+		displayFolder: 12 Live season
+
+	measure 'Live Next GP' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Next Race], CALCULATE ( [Next Race], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 6cce30a6-2e78-5f55-8c52-cf8dff2f4c76
+		displayFolder: 12 Live season
+
+	measure 'Live Next GP Sub' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Next GP Sub], CALCULATE ( [Next GP Sub], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 0a421131-4379-5332-9ba0-f6b1c1eb3b7a
+		displayFolder: 12 Live season
+
+	measure 'Live Round Line' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Round Line], CALCULATE ( [Round Line], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: b7d447d0-35cb-5e8a-8fd2-fe8e77ed21ff
+		displayFolder: 12 Live season
+
+	measure 'Live Winners Sub' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Winners Sub], CALCULATE ( [Winners Sub], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 31f0f062-bd64-5422-8038-397d12b4e135
+		displayFolder: 12 Live season
+
+	measure 'Live Headline' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Season Headline], CALCULATE ( [Season Headline], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 3c4508eb-e71b-5ee8-9e48-fc6117c6b658
+		displayFolder: 12 Live season
+
+	measure 'Live Season' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Selected Season], CALCULATE ( [Selected Season], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: a64c049f-4354-5832-8d80-0a39388c7b67
+		displayFolder: 12 Live season
+
+	measure 'Track' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, SELECTEDVALUE ( D_Circuit[TrackSvg] ) )
+		lineageTag: 584568d7-d48a-536b-9b52-1e3c94474562
+		displayFolder: 14 Classic eleven
+		dataCategory: ImageUrl
+
+	measure 'Flag' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, SELECTEDVALUE ( D_Circuit[FlagSvg] ) )
+		lineageTag: 2d4129b0-8267-5885-8148-93af6d1b52bb
+		displayFolder: 14 Classic eleven
+		dataCategory: ImageUrl
+
+	measure 'Nickname' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, SELECTEDVALUE ( D_Circuit[Nickname] ) )
+		lineageTag: 569534e4-e9f3-54ce-a22e-70f7d009699a
+		displayFolder: 14 Classic eleven
+
+	measure 'Classic country' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, SELECTEDVALUE ( D_Circuit[Country] ) )
+		lineageTag: e4f7dde6-3221-5785-b78f-c76ea70703dd
+		displayFolder: 14 Classic eleven
+
+	measure 'Km' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, SELECTEDVALUE ( D_Circuit[LengthKm] ) )
+		formatString: 0.000
+		lineageTag: 88fe86e9-1a3c-5c1b-95f0-d858a2f1c3a5
+		displayFolder: 14 Classic eleven
+
+	measure 'Corners' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, SELECTEDVALUE ( D_Circuit[Turns] ) )
+		formatString: 0
+		lineageTag: 892382ad-db6f-516e-81ba-853c9f6189a4
+		displayFolder: 14 Classic eleven
+
+	measure 'GP' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, [Grands Prix Held] )
+		formatString: #,0
+		lineageTag: 4ce5845d-a667-5360-baf5-f425bb316e1b
+		displayFolder: 14 Classic eleven
+
+	measure 'Record' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, [Lap Record] )
+		lineageTag: e566cbf0-02a5-53dc-abc0-7a2aa8d97e03
+		displayFolder: 14 Classic eleven
+
+	measure 'Winners' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, [Different Winners] )
+		formatString: 0
+		lineageTag: 451a6727-f5ef-51ba-a352-224b6732c60e
+		displayFolder: 14 Classic eleven
+
+	measure 'Lat' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, AVERAGE ( D_Circuit[Latitude] ) )
+		formatString: 0.0000
+		lineageTag: 8d2cefad-2f5a-5da1-8400-0dc579eec1e3
+		displayFolder: 14 Classic eleven
+
+	measure 'Lon' = IF ( SELECTEDVALUE ( D_Circuit[IsClassic] ) = 1, AVERAGE ( D_Circuit[Longitude] ) )
+		formatString: 0.0000
+		lineageTag: 2996a989-6727-5e7d-adeb-5230569281e4
+		displayFolder: 14 Classic eleven
+
+	measure 'Lab Blueprint' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Track Blueprint], CALCULATE ( [Track Blueprint], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 72dc2c4d-1690-545a-8d62-3c884c298bdf
+		displayFolder: 13 Circuit lab
+		dataCategory: ImageUrl
+
+	measure 'Lab Profile' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Circuit Profile], CALCULATE ( [Circuit Profile], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 60b01fa3-86b3-593c-b263-477b6d020b9e
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Headline' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Circuit Headline], CALCULATE ( [Circuit Headline], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 8d3d5ddb-9df1-5a81-b743-1e85c044d708
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Corner' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Signature Corner], CALCULATE ( [Signature Corner], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 46007837-2d31-5d81-9dc7-e90d785b6bcf
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab GP' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Grands Prix Held], CALCULATE ( [Grands Prix Held], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: #,0
+		lineageTag: 080b22a9-54df-5f68-9db1-19c6a747ee82
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab First GP' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [First Grand Prix], CALCULATE ( [First Grand Prix], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0
+		lineageTag: 3cccaba3-83b2-5b9e-a066-536af749e3bd
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Winners' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Different Winners], CALCULATE ( [Different Winners], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0
+		lineageTag: 0efc0b2d-2860-5a9c-b005-5b9bfbe71251
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Teams' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Different Winning Teams], CALCULATE ( [Different Winning Teams], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0
+		lineageTag: a9a01809-cc54-5ec3-bab3-77ddb76a4e81
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Record' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Lap Record], CALCULATE ( [Lap Record], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 1e2b2cd7-d9f1-56d9-bac0-59c588188c2b
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Record Line' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Lap Record Line], CALCULATE ( [Lap Record Line], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: e8a3aa1f-3de1-51fb-bf44-cad0f228913e
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Master' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Track Master], CALCULATE ( [Track Master], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: f4fdd7c2-c19c-53c2-9cda-411878258d5c
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Master Team' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Track Master Team], CALCULATE ( [Track Master Team], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: d11350a1-ff86-535c-b2f2-8d4a11bceba0
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Length' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Circuit Length (km)], CALCULATE ( [Circuit Length (km)], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0.000
+		lineageTag: 524c558e-6b69-5e5f-81fe-09e850583587
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Turns' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Circuit Turns], CALCULATE ( [Circuit Turns], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0
+		lineageTag: 17d9a1a1-a494-5953-ab38-fd6fbbde272c
+		displayFolder: 13 Circuit lab
+
+	measure 'Driver wins here' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Wins Here], CALCULATE ( [Wins Here], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: #,0
+		lineageTag: 1a03cbe0-d49a-5468-a8c3-be357aeee270
+		displayFolder: 13 Circuit lab
+
+	measure 'Team podiums here' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Podiums Here], CALCULATE ( [Podiums Here], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: #,0
+		lineageTag: 2eccc125-2c41-593f-b0d0-055307d2572c
+		displayFolder: 13 Circuit lab
+
+	measure 'Race win by' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Race Winner], CALCULATE ( [Race Winner], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 2d2355b9-8c0c-52c2-b0e4-7d64d50aa949
+		displayFolder: 13 Circuit lab
+
+	measure 'Constructor' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Winning Team], CALCULATE ( [Winning Team], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 013c4b82-a76c-568a-82e0-c5d330593307
+		displayFolder: 13 Circuit lab
+
+	measure 'Pole' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Pole Sitter], CALCULATE ( [Pole Sitter], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: c9694711-f08b-5ba9-9eaf-f6fdee0f702d
+		displayFolder: 13 Circuit lab
+
+	measure 'Margin' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Winning Margin], CALCULATE ( [Winning Margin], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 6d37dd26-f597-531e-b06c-a41b8472fa3b
+		displayFolder: 13 Circuit lab
+
+	measure 'Fastest lap' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Lap Record], CALCULATE ( [Lap Record], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		lineageTag: 93b6daa2-20dc-587d-a6f1-3989e2d15cbf
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Lat' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Circuit Latitude], CALCULATE ( [Circuit Latitude], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0.0000
+		lineageTag: a28df952-858d-585e-8b96-e41b8b8db09f
+		displayFolder: 13 Circuit lab
+
+	measure 'Lab Lon' = VAR c = [Default Circuit] RETURN IF ( ISBLANK ( c ), [Circuit Longitude], CALCULATE ( [Circuit Longitude], REMOVEFILTERS ( D_Circuit ), D_Circuit[CircuitId] = c ) )
+		formatString: 0.0000
+		lineageTag: 81a6a83f-baf0-53fa-bc0c-5a7281ae52fa
+		displayFolder: 13 Circuit lab
+
+	measure 'Circuit Latitude' = AVERAGE ( D_Circuit[Latitude] )
+		formatString: 0.0000
+		lineageTag: 43e72452-85de-501a-815a-5a52b0b0646e
+		displayFolder: 11 Scope
+
+	measure 'Circuit Longitude' = AVERAGE ( D_Circuit[Longitude] )
+		formatString: 0.0000
+		lineageTag: bdb89e47-2574-5771-8dfd-61b189c519ea
+		displayFolder: 11 Scope
+
+	measure 'Nation' = IF ( NOT ISBLANK ( [HoF Wins] ), SELECTEDVALUE ( D_Driver[FlagSvg] ) )
+		lineageTag: d14f69c1-c65d-5897-ac5f-2288c5443d6c
+		displayFolder: 15 Table columns
+		dataCategory: ImageUrl
+
+	measure 'Helmet chip' = IF ( NOT ISBLANK ( [HoF Wins] ), SELECTEDVALUE ( D_Driver[HelmetSvg] ) )
+		lineageTag: 53530133-0184-5fbb-ad62-5cd69da60701
+		displayFolder: 15 Table columns
+		dataCategory: ImageUrl
+
+	measure 'GP wins' = [HoF Wins]
+		formatString: #,0
+		lineageTag: b2a9263a-daad-53e8-afed-4c88f1a3ed91
+		displayFolder: 15 Table columns
+
+	measure 'GP poles' = [HoF Poles]
+		formatString: #,0
+		lineageTag: f61d3b7d-27f6-5c10-a0ca-26d23760dcfd
+		displayFolder: 15 Table columns
+
+	measure 'GP podiums' = [HoF Podiums]
+		formatString: #,0
+		lineageTag: 0357d300-28dc-594e-b154-f15460f32c37
+		displayFolder: 15 Table columns
+
+	measure 'Badge' = IF ( NOT ISBLANK ( [Grands Prix] ), SELECTEDVALUE ( D_Constructor[TeamBadge] ) )
+		lineageTag: 9dc06d7b-1f1a-5f30-9004-920d65628674
+		displayFolder: 15 Table columns
+		dataCategory: ImageUrl
+
+	measure 'Race wins' = IF ( NOT ISBLANK ( [Grands Prix] ), [Wins] + 0 )
+		formatString: #,0
+		lineageTag: 2cbc4352-b849-59d7-8eb5-23329ecdad91
+		displayFolder: 15 Table columns
+
+	measure 'Podium finishes' = IF ( NOT ISBLANK ( [Grands Prix] ), [Podiums] + 0 )
+		formatString: #,0
+		lineageTag: 1de78841-09ce-564e-91c7-e60e6fa413ff
+		displayFolder: 15 Table columns
+
+	measure 'Pole positions' = IF ( NOT ISBLANK ( [Grands Prix] ), [Poles] + 0 )
+		formatString: #,0
+		lineageTag: 061e2d78-7fc5-51e9-8f45-b20c14524ee0
+		displayFolder: 15 Table columns
+
+	measure 'Record Rank' = RANKX ( ALLSELECTED ( D_Constructor[Team] ), [Points],, DESC )
+		formatString: 0
+		lineageTag: b8746cb6-d698-5efc-adcb-2e9c54d26c56
+		displayFolder: 15 Table columns
+
+	measure 'Nation Rank' = RANKX ( ALLSELECTED ( D_Circuit[Country] ), [Nation GP],, DESC )
+		formatString: 0
+		lineageTag: 037b0e28-84dc-59a8-a4e3-753c5f6d8fa4
+		displayFolder: 15 Table columns
+
+	measure 'Classic circuits' = CALCULATE ( DISTINCTCOUNT ( D_Circuit[CircuitId] ), D_Circuit[IsClassic] = 1 )
+		formatString: 0
+		lineageTag: dbbbaadd-964d-5898-832b-5b3c5205d095
+		displayFolder: 16 Page totals
+
+	measure 'Classic GP' = CALCULATE ( [Grands Prix Held], D_Circuit[IsClassic] = 1 )
+		formatString: #,0
+		lineageTag: ccd6d3b0-b1aa-5c14-a892-bfc8b0488b9d
+		displayFolder: 16 Page totals
+
+	measure 'Classic winners' = CALCULATE ( [Different Winners], D_Circuit[IsClassic] = 1 )
+		formatString: 0
+		lineageTag: 5a557ad4-38aa-5484-b9aa-4b0bb3a398f7
+		displayFolder: 16 Page totals
+
+	measure 'Classic km' = CALCULATE ( SUMX ( VALUES ( D_Circuit[CircuitId] ), CALCULATE ( MAX ( D_Circuit[LengthKm] ) ) ), D_Circuit[IsClassic] = 1 )
+		formatString: 0.0
+		lineageTag: a212720b-63b1-5009-a411-4d15ec28e7be
+		displayFolder: 16 Page totals
+
+	measure 'Classic corners' = CALCULATE ( SUMX ( VALUES ( D_Circuit[CircuitId] ), CALCULATE ( MAX ( D_Circuit[Turns] ) ) ), D_Circuit[IsClassic] = 1 )
+		formatString: #,0
+		lineageTag: 6f7f90e5-6ea7-54af-ade7-00586d93a722
+		displayFolder: 16 Page totals
+
+	measure 'Era points' = [Points]
+		formatString: #,0
+		lineageTag: 748f6d10-7801-5c99-a205-a3c60461e0b2
+		displayFolder: 16 Page totals
+
+	measure 'Era wins' = [Wins]
+		formatString: #,0
+		lineageTag: 2ae858fe-36cf-55b7-8f83-4320456fc5df
+		displayFolder: 16 Page totals
+
+	measure 'Top 12 Metric' = IF ( RANKX ( ALLSELECTED ( D_Driver[Driver] ), [Selected Metric],, DESC ) <= 12, [Selected Metric] )
+		lineageTag: 1caf33fa-b1cd-5c2e-8e63-1feb8c211f0d
+		displayFolder: 16 Page totals
+
+	measure 'Car base' = IF ( NOT ISBLANK ( [Grands Prix] ), SELECTEDVALUE ( D_Constructor[CarSvg] ) )
+		lineageTag: c2f64c48-6915-594c-b979-6d2c0cf2f3f1
+		displayFolder: 17 Teams & results
+		dataCategory: ImageUrl
+
+	measure 'Line-up base' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Driver[Driver] ), D_Driver[Driver], " · " ), F_Result[Position] <= 30 )
+		lineageTag: 78a71b25-8077-57b5-97cb-ad4df04b92da
+		displayFolder: 17 Teams & results
+
+	measure 'Pos base' = VAR p = [Team Championship Position] RETURN IF ( ISBLANK ( p ), BLANK ( ), "P" & FORMAT ( p, "0" ) )
+		lineageTag: 208f827c-c53b-597d-8548-28a08219246e
+		displayFolder: 17 Teams & results
+
+	measure 'Points base' = [Team Championship Points]
+		formatString: #,0
+		lineageTag: 08858044-7f1e-5e6c-86da-701a3d21e516
+		displayFolder: 17 Teams & results
+
+	measure 'Grand Prix' = SELECTEDVALUE ( D_Race[GrandPrix] )
+		lineageTag: b7a6525b-7c6e-5256-b91e-d5f347c16d73
+		displayFolder: 17 Teams & results
+
+	measure 'Round base' = IF ( ISBLANK ( [Winner base] ), BLANK ( ), SELECTEDVALUE ( D_Race[Round] ) )
+		formatString: 0
+		lineageTag: 7971a29b-cf0a-5fa8-8d40-bae8148a740f
+		displayFolder: 17 Teams & results
+
+	measure 'Date base' = VAR d = SELECTEDVALUE ( D_Race[RaceDate] ) RETURN IF ( ISBLANK ( d ) || ISBLANK ( [Winner base] ), BLANK ( ), FORMAT ( d, "dd mmm" ) )
+		lineageTag: 40a88fc7-8055-51f9-9975-2aecfb9a2630
+		displayFolder: 17 Teams & results
+
+	measure 'Country' = SELECTEDVALUE ( D_Race[Country] )
+		lineageTag: 8c14657c-04d0-5f8a-9c40-932f9dca12fb
+		displayFolder: 17 Teams & results
+
+	measure 'Flag base' = IF ( ISBLANK ( [Winner base] ), BLANK ( ), LOOKUPVALUE ( D_Circuit[FlagSvg], D_Circuit[CircuitId], SELECTEDVALUE ( D_Race[CircuitId] ) ) )
+		lineageTag: 1e57d2c7-cb0c-5d2b-856a-744004c8926e
+		displayFolder: 17 Teams & results
+		dataCategory: ImageUrl
+
+	measure 'Helmet base' = VAR w = CALCULATETABLE ( SUMMARIZE ( F_Result, D_Driver[HelmetSvg] ), F_Result[IsWin] = 1 ) RETURN IF ( COUNTROWS ( w ) = 1, MAXX ( w, [HelmetSvg] ) )
+		lineageTag: d7d203e0-9678-5d52-bf68-23d188d4a954
+		displayFolder: 17 Teams & results
+		dataCategory: ImageUrl
+
+	measure 'Winner base' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Driver[Driver] ), D_Driver[Driver] ), F_Result[IsWin] = 1 )
+		lineageTag: cb6ab2c9-1296-58e2-8a0a-68f294c625a8
+		displayFolder: 17 Teams & results
+
+	measure 'Team base' = CALCULATE ( CONCATENATEX ( SUMMARIZE ( F_Result, D_Constructor[Team] ), D_Constructor[Team] ), F_Result[IsWin] = 1 )
+		lineageTag: 193a7445-4286-5dff-bdb5-d8ba54d1f0a7
+		displayFolder: 17 Teams & results
+
+	measure 'Laps base' = CALCULATE ( MAX ( F_Result[LapsCompleted] ), F_Result[IsWin] = 1 )
+		formatString: 0
+		lineageTag: 332af39d-7857-551b-ba36-e8cfd7dbc227
+		displayFolder: 17 Teams & results
+
+	measure 'Time base' = VAR ms = CALCULATE ( MIN ( F_Result[RaceTimeMillis] ), F_Result[IsWin] = 1 ) RETURN IF ( ISBLANK ( ms ), BLANK ( ), FORMAT ( INT ( ms / 3600000 ), "0" ) & ":" & FORMAT ( INT ( MOD ( ms, 3600000 ) / 60000 ), "00" ) & ":" & FORMAT ( INT ( MOD ( ms, 60000 ) / 1000 ), "00" ) & "." & FORMAT ( MOD ( ms, 1000 ), "000" ) )
+		lineageTag: bae2c2a8-a412-5813-885b-0737bee0685f
+		displayFolder: 17 Teams & results
+
+	measure 'Wins base' = IF ( NOT ISBLANK ( [Grands Prix] ), [Wins] + 0 )
+		formatString: #,0
+		lineageTag: 7d2e347c-fbb3-5050-8e09-72ba95112a86
+		displayFolder: 17 Teams & results
+
+	measure 'Podiums base' = IF ( NOT ISBLANK ( [Grands Prix] ), [Podiums] + 0 )
+		formatString: #,0
+		lineageTag: 73aa137f-e373-5f7b-a932-7c112899a6bf
+		displayFolder: 17 Teams & results
+
+	measure 'Team poles' = IF ( NOT ISBLANK ( [Grands Prix] ), [Poles] )
+		formatString: #,0
+		lineageTag: ef26fbc9-1d1f-529d-89bb-1c3533bd7f31
+		displayFolder: 17 Teams & results
+
+	measure 'Teams on the grid' = DISTINCTCOUNT ( F_Result[ConstructorId] )
+		formatString: 0
+		lineageTag: 96040f94-4510-5a12-9ff6-9357b55a10d7
+		displayFolder: 17 Teams & results
+
+	measure 'Drivers on the grid' = DISTINCTCOUNT ( F_Result[DriverId] )
+		formatString: 0
+		lineageTag: b286b592-678c-5277-9577-2213463330e2
+		displayFolder: 17 Teams & results
+
+	measure 'Nat' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Flag base], CALCULATE ( [Flag base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 74ddc579-d919-5a19-b141-9c7a3ab02f8c
+		displayFolder: 18 Race row
+		dataCategory: ImageUrl
+
+	measure 'Date' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Date base], CALCULATE ( [Date base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 6f204d2c-775d-5f7c-a9c2-0bed362831c2
+		displayFolder: 18 Race row
+
+	measure 'Helmet' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Helmet base], CALCULATE ( [Helmet base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 0b60058e-aae1-53e2-a595-14706bc6202f
+		displayFolder: 18 Race row
+		dataCategory: ImageUrl
+
+	measure 'Winner' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Winner base], CALCULATE ( [Winner base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: dada987b-c0ef-5348-b9d8-b0792c798141
+		displayFolder: 18 Race row
+
+	measure 'Team' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Team base], CALCULATE ( [Team base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: a140e7ca-78a3-522a-bdae-18e5dd7e03e4
+		displayFolder: 18 Race row
+
+	measure 'Laps' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Laps base], CALCULATE ( [Laps base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: 0
+		lineageTag: 241bd7ec-925e-50d6-94a3-2556277cf807
+		displayFolder: 18 Race row
+
+	measure 'Time' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Time base], CALCULATE ( [Time base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 9eee15de-3910-5268-bd53-798cf8fcad93
+		displayFolder: 18 Race row
+
+	measure 'Rnd' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Round base], CALCULATE ( [Round base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: 0
+		lineageTag: 60097990-78d0-5f36-8e90-c229caeca7c9
+		displayFolder: 18 Race row
+
+	measure 'Car' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Car base], CALCULATE ( [Car base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: d83e03e0-c055-5426-a00b-37f8c7dc6c0b
+		displayFolder: 12 Live season
+		dataCategory: ImageUrl
+
+	measure 'Line-up' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Line-up base], CALCULATE ( [Line-up base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: f856d446-efb1-57aa-a3e1-6465b09f3c95
+		displayFolder: 12 Live season
+
+	measure 'Pos' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Pos base], CALCULATE ( [Pos base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		lineageTag: 5ba8fbcc-3a30-59f8-9b95-1c882f7e674e
+		displayFolder: 12 Live season
+
+	measure 'Pts' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Points base], CALCULATE ( [Points base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: 9c42d8de-9ccd-527f-ba94-9f1bd3209a24
+		displayFolder: 12 Live season
+
+	measure 'Won' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Wins base], CALCULATE ( [Wins base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: df3f9e91-21b6-5adf-82cd-fd7196f8a8e3
+		displayFolder: 12 Live season
+
+	measure 'Top 3' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Podiums base], CALCULATE ( [Podiums base], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: d2e1198f-5959-5a32-b4c6-03da7e551b2d
+		displayFolder: 12 Live season
+
+	measure 'Grid teams' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Teams on the grid], CALCULATE ( [Teams on the grid], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: 0
+		lineageTag: e31e8825-9655-561d-b86a-9663ca3ff240
+		displayFolder: 12 Live season
+
+	measure 'Grid drivers' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Drivers on the grid], CALCULATE ( [Drivers on the grid], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: 0
+		lineageTag: f7cf5598-cad2-5852-864e-b6b9eb240acb
+		displayFolder: 12 Live season
+
+	measure 'Grid races' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Grands Prix], CALCULATE ( [Grands Prix], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: #,0
+		lineageTag: 4feb3cb6-8dae-5d51-b46d-57d2aaf9cf9e
+		displayFolder: 12 Live season
+
+	measure 'Grid winners' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Different Winners], CALCULATE ( [Different Winners], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: 0
+		lineageTag: 0161451c-c097-57de-93bb-3eaafab1a61c
+		displayFolder: 12 Live season
+
+	measure 'Grid teams won' = VAR y = [Default Season] RETURN IF ( ISBLANK ( y ), [Different Winning Teams], CALCULATE ( [Different Winning Teams], REMOVEFILTERS ( D_Season ), D_Season[Year] = y ) )
+		formatString: 0
+		lineageTag: ae2cb78e-f675-5fe3-ace0-76dca4efd2a8
+		displayFolder: 12 Live season
+
+	measure 'Nation flag' = SELECTEDVALUE ( D_Circuit[FlagSvg] )
+		lineageTag: 8da86c3e-e52a-5025-a94e-a1189cdd42fe
+		displayFolder: 19 Countries
+		dataCategory: ImageUrl
+
+	measure 'Tracks' = DISTINCTCOUNT ( D_Circuit[CircuitId] )
+		formatString: 0
+		lineageTag: e6ea914d-41f6-5068-a521-05c03abb44ca
+		displayFolder: 19 Countries
+
+	measure 'Nation GP' = [Grands Prix Held]
+		formatString: #,0
+		lineageTag: a4e21105-2799-57a9-bbca-548cf39d71a0
+		displayFolder: 19 Countries
+
+	measure 'Nation winners' = [Different Winners]
+		formatString: 0
+		lineageTag: c84b1bd3-aafc-52bb-a696-7048408b21d7
+		displayFolder: 19 Countries
+
+	measure 'First visit' = MIN ( D_Circuit[FirstGrandPrix] )
+		formatString: 0
+		lineageTag: d3dd431d-7bd2-56dc-a4d6-31dcf9a84295
+		displayFolder: 19 Countries
+
+	measure 'Countries' = DISTINCTCOUNT ( D_Circuit[Country] )
+		formatString: 0
+		lineageTag: 246b7258-6923-584f-bf91-0b07de741df6
+		displayFolder: 19 Countries
+
+	measure 'Continents' = DISTINCTCOUNT ( D_Circuit[CountryId] )
+		formatString: 0
+		lineageTag: f4c7609a-9961-596e-a0c4-6847cd1a1ad7
+		displayFolder: 19 Countries
+
+	column Placeholder
+		dataType: string
+		isHidden
+		lineageTag: 42d5ecde-7f16-51a1-8b1d-8f84df0dd4d3
+		summarizeBy: none
+		sourceColumn: [Placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Metrics = calculated
+		mode: import
+		source = ROW ( "Placeholder", "" )
+
+	annotation PBI_Id = Metrics

@@ -1,0 +1,171 @@
+table D_Driver
+	lineageTag: b509eb97-59b3-5c57-9e77-b9951fe5c6d2
+
+	column DriverId
+		dataType: string
+		isHidden
+		lineageTag: 79a2537f-f807-5bb7-a02a-7705b4b284a9
+		summarizeBy: none
+		sourceColumn: DriverId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver
+		dataType: string
+		lineageTag: 61dc6352-4550-55e4-a201-993a85cf4470
+		summarizeBy: none
+		sourceColumn: Driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		isHidden
+		lineageTag: 863bdffb-30cb-566e-915b-3c2407f0ae25
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: ec95644c-0cee-5b36-b79c-793f6749043d
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Abbr
+		dataType: string
+		lineageTag: d82a85ad-1589-5a65-9fe6-12ad6ed73dbf
+		summarizeBy: none
+		sourceColumn: Abbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number
+		dataType: int64
+		formatString: 0
+		lineageTag: 79786de1-1672-5b99-bed8-498727496159
+		summarizeBy: none
+		sourceColumn: Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column NationalityId
+		dataType: string
+		isHidden
+		lineageTag: 404c8304-53ae-57fc-99f9-08569e154429
+		summarizeBy: none
+		sourceColumn: NationalityId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nationality
+		dataType: string
+		lineageTag: 8396d045-0aa2-5af0-baf0-e3357f7f29e9
+		summarizeBy: none
+		sourceColumn: Nationality
+
+		annotation SummarizationSetBy = Automatic
+
+	column NationCountry
+		dataType: string
+		lineageTag: 07fc708e-8fa0-57b2-9141-8be9de836039
+		summarizeBy: none
+		sourceColumn: NationCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column NationCode
+		dataType: string
+		isHidden
+		lineageTag: 7624e4e1-872d-549b-bf5d-91a7314f1a0e
+		summarizeBy: none
+		sourceColumn: NationCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateOfBirth
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: bd7961f7-53a9-514b-aa30-871d12665a9f
+		summarizeBy: none
+		sourceColumn: DateOfBirth
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerWins
+		dataType: int64
+		formatString: #,0
+		lineageTag: f6663438-c0af-50f4-a04c-b1ced582970d
+		summarizeBy: sum
+		sourceColumn: CareerWins
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerPodiums
+		dataType: int64
+		formatString: #,0
+		lineageTag: 39befb7d-8d6f-5a7b-8f2e-2604d29fecfb
+		summarizeBy: sum
+		sourceColumn: CareerPodiums
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerPoles
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1803cc9b-accb-5c85-b74e-1e0d342a888d
+		summarizeBy: sum
+		sourceColumn: CareerPoles
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerTitles
+		dataType: int64
+		formatString: 0
+		lineageTag: 33ed6559-04c2-5eff-9a16-8704216aed72
+		summarizeBy: sum
+		sourceColumn: CareerTitles
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerStarts
+		dataType: int64
+		formatString: #,0
+		lineageTag: 82d1ad3f-4710-562b-a117-91c23dc62d2f
+		summarizeBy: sum
+		sourceColumn: CareerStarts
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlagSvg
+		dataType: string
+		lineageTag: 8a17423b-b3ed-567c-bf05-0bc7dbc08347
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: FlagSvg
+
+		annotation SummarizationSetBy = Automatic
+
+	column HelmetSvg
+		dataType: string
+		lineageTag: fe753d4e-7c2b-5621-88c0-bfbc95eb4383
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: HelmetSvg
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Driver = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Driver.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"DriverId", type text}, {"Driver", type text}, {"FirstName", type text}, {"LastName", type text}, {"Abbr", type text}, {"Number", Int64.Type}, {"NationalityId", type text}, {"Nationality", type text}, {"NationCountry", type text}, {"NationCode", type text}, {"DateOfBirth", type date}, {"CareerWins", Int64.Type}, {"CareerPodiums", Int64.Type}, {"CareerPoles", Int64.Type}, {"CareerTitles", Int64.Type}, {"CareerStarts", Int64.Type}, {"FlagSvg", type text}, {"HelmetSvg", type text}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,300 @@
+table F_Result
+	lineageTag: 93ec98c1-77c3-57bc-961b-ef085dd5cf07
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 41bfcb8b-6248-5a37-861f-479d294f86b5
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: bf336194-a9a9-58ce-8d3d-fc3e600bb423
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Round
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 8dab05c0-53ca-56b6-ba8e-70c10a992164
+		summarizeBy: none
+		sourceColumn: Round
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriverId
+		dataType: string
+		isHidden
+		lineageTag: 8a2f2bf0-234c-5f5b-8df6-1278e30061be
+		summarizeBy: none
+		sourceColumn: DriverId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorId
+		dataType: string
+		isHidden
+		lineageTag: 8957f11a-5a55-5ad3-a588-d4b62857f303
+		summarizeBy: none
+		sourceColumn: ConstructorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EngineId
+		dataType: string
+		isHidden
+		lineageTag: 57a85fa8-208a-587c-bb63-7027ec53b5eb
+		summarizeBy: none
+		sourceColumn: EngineId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: int64
+		formatString: 0
+		lineageTag: 878b6a62-8044-5e37-b87b-2130b37ed3e5
+		summarizeBy: none
+		sourceColumn: Position
+
+		annotation SummarizationSetBy = Automatic
+
+	column PositionText
+		dataType: string
+		lineageTag: 47c41d82-1966-5d0a-a544-651bb262804b
+		summarizeBy: none
+		sourceColumn: PositionText
+
+		annotation SummarizationSetBy = Automatic
+
+	column Points
+		dataType: double
+		formatString: #,0.##
+		lineageTag: d4393044-30c9-50b5-afe0-bdc276cf7564
+		summarizeBy: sum
+		sourceColumn: Points
+
+		annotation SummarizationSetBy = Automatic
+
+	column GridPosition
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f0df714-7c41-54d3-b0dd-aeb2a7252655
+		summarizeBy: none
+		sourceColumn: GridPosition
+
+		annotation SummarizationSetBy = Automatic
+
+	column QualiPosition
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d3215f4-36d1-5c13-8a46-aac64ecfb4bd
+		summarizeBy: none
+		sourceColumn: QualiPosition
+
+		annotation SummarizationSetBy = Automatic
+
+	column LapsCompleted
+		dataType: int64
+		formatString: #,0
+		lineageTag: cba95756-b980-5cf6-8b8a-6dc44334ee57
+		summarizeBy: sum
+		sourceColumn: LapsCompleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column PositionsGained
+		dataType: int64
+		formatString: +0;-0;0
+		lineageTag: ff05b3d2-9a56-5208-b8d6-18cd9b15a099
+		summarizeBy: none
+		sourceColumn: PositionsGained
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWin
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: ca939a0b-2bed-5aa7-94f7-8f858495b0f8
+		summarizeBy: none
+		sourceColumn: IsWin
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPodium
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 2e605b06-b01a-5292-8edc-d4cfd828b637
+		summarizeBy: none
+		sourceColumn: IsPodium
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPoints
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f1a95bd3-5e8f-513f-9640-6469d65e8636
+		summarizeBy: none
+		sourceColumn: IsPoints
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsFinished
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 50259ebc-da97-5aa4-8bc0-4c33169f084d
+		summarizeBy: none
+		sourceColumn: IsFinished
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsPole
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 6cce30a6-2e78-5f55-8c52-cf8dff2f4c76
+		summarizeBy: none
+		sourceColumn: IsPole
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsFastestLap
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 0a421131-4379-5332-9ba0-f6b1c1eb3b7a
+		summarizeBy: none
+		sourceColumn: IsFastestLap
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsGrandSlam
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b7d447d0-35cb-5e8a-8fd2-fe8e77ed21ff
+		summarizeBy: none
+		sourceColumn: IsGrandSlam
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsDriverOfTheDay
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 31f0f062-bd64-5422-8038-397d12b4e135
+		summarizeBy: none
+		sourceColumn: IsDriverOfTheDay
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsDNF
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 3c4508eb-e71b-5ee8-9e48-fc6117c6b658
+		summarizeBy: none
+		sourceColumn: IsDNF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RetirementReason
+		dataType: string
+		lineageTag: a64c049f-4354-5832-8d80-0a39388c7b67
+		summarizeBy: none
+		sourceColumn: RetirementReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column RaceTimeMillis
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 584568d7-d48a-536b-9b52-1e3c94474562
+		summarizeBy: none
+		sourceColumn: RaceTimeMillis
+
+		annotation SummarizationSetBy = Automatic
+
+	column GapMillis
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 2d4129b0-8267-5885-8148-93af6d1b52bb
+		summarizeBy: none
+		sourceColumn: GapMillis
+
+		annotation SummarizationSetBy = Automatic
+
+	column PitStops
+		dataType: int64
+		formatString: 0
+		lineageTag: 569534e4-e9f3-54ce-a22e-70f7d009699a
+		summarizeBy: sum
+		sourceColumn: PitStops
+
+		annotation SummarizationSetBy = Automatic
+
+	column BestPitStopMs
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: e4f7dde6-3221-5785-b78f-c76ea70703dd
+		summarizeBy: none
+		sourceColumn: BestPitStopMs
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalPitMs
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 88fe86e9-1a3c-5c1b-95f0-d858a2f1c3a5
+		summarizeBy: none
+		sourceColumn: TotalPitMs
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartedFromPole
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 892382ad-db6f-516e-81ba-853c9f6189a4
+		summarizeBy: none
+		sourceColumn: StartedFromPole
+
+		annotation SummarizationSetBy = Automatic
+
+	column WinFromPole
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 4ce5845d-a667-5360-baf5-f425bb316e1b
+		summarizeBy: none
+		sourceColumn: WinFromPole
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Result = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_Result.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"Round", Int64.Type}, {"DriverId", type text}, {"ConstructorId", type text}, {"EngineId", type text}, {"Position", Int64.Type}, {"PositionText", type text}, {"Points", type number}, {"GridPosition", Int64.Type}, {"QualiPosition", Int64.Type}, {"LapsCompleted", Int64.Type}, {"PositionsGained", Int64.Type}, {"IsWin", Int64.Type}, {"IsPodium", Int64.Type}, {"IsPoints", Int64.Type}, {"IsFinished", Int64.Type}, {"IsPole", Int64.Type}, {"IsFastestLap", Int64.Type}, {"IsGrandSlam", Int64.Type}, {"IsDriverOfTheDay", Int64.Type}, {"IsDNF", Int64.Type}, {"RetirementReason", type text}, {"RaceTimeMillis", type number}, {"GapMillis", type number}, {"PitStops", Int64.Type}, {"BestPitStopMs", type number}, {"TotalPitMs", type number}, {"StartedFromPole", Int64.Type}, {"WinFromPole", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

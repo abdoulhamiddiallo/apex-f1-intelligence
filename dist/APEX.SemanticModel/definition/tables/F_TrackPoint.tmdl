@@ -1,0 +1,68 @@
+table F_TrackPoint
+	lineageTag: 78a71b25-8077-57b5-97cb-ad4df04b92da
+
+	column CircuitId
+		dataType: string
+		isHidden
+		lineageTag: 208f827c-c53b-597d-8548-28a08219246e
+		summarizeBy: none
+		sourceColumn: CircuitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PointOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 08858044-7f1e-5e6c-86da-701a3d21e516
+		summarizeBy: none
+		sourceColumn: PointOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column X
+		dataType: double
+		formatString: 0.0
+		lineageTag: b7a6525b-7c6e-5256-b91e-d5f347c16d73
+		summarizeBy: none
+		sourceColumn: X
+
+		annotation SummarizationSetBy = Automatic
+
+	column Y
+		dataType: double
+		formatString: 0.0
+		lineageTag: 7971a29b-cf0a-5fa8-8d40-bae8148a740f
+		summarizeBy: none
+		sourceColumn: Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 40a88fc7-8055-51f9-9975-2aecfb9a2630
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 8c14657c-04d0-5f8a-9c40-932f9dca12fb
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_TrackPoint = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_TrackPoint.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"CircuitId", type text}, {"PointOrder", Int64.Type}, {"X", type number}, {"Y", type number}, {"Longitude", type number}, {"Latitude", type number}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

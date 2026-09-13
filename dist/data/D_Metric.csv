@@ -1,0 +1,8 @@
+﻿Metric,MetricDesc,MetricOrder
+Points,Championship points,1
+Wins,Race wins,2
+Podiums,Podium finishes,3
+Poles,Pole positions,4
+Fastest laps,Fastest race laps,5
+Avg finish,Average finishing position,6
+DNFs,Retirements,7

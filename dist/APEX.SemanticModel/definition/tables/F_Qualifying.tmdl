@@ -1,0 +1,121 @@
+table F_Qualifying
+	lineageTag: e566cbf0-02a5-53dc-abc0-7a2aa8d97e03
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 451a6727-f5ef-51ba-a352-224b6732c60e
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 8d2cefad-2f5a-5da1-8400-0dc579eec1e3
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriverId
+		dataType: string
+		isHidden
+		lineageTag: 2996a989-6727-5e7d-adeb-5230569281e4
+		summarizeBy: none
+		sourceColumn: DriverId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorId
+		dataType: string
+		isHidden
+		lineageTag: 72dc2c4d-1690-545a-8d62-3c884c298bdf
+		summarizeBy: none
+		sourceColumn: ConstructorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column QualiPosition
+		dataType: int64
+		formatString: 0
+		lineageTag: 60b01fa3-86b3-593c-b263-477b6d020b9e
+		summarizeBy: none
+		sourceColumn: QualiPosition
+
+		annotation SummarizationSetBy = Automatic
+
+	column BestQualiMs
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 8d3d5ddb-9df1-5a81-b743-1e85c044d708
+		summarizeBy: none
+		sourceColumn: BestQualiMs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Q1Ms
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 46007837-2d31-5d81-9dc7-e90d785b6bcf
+		summarizeBy: none
+		sourceColumn: Q1Ms
+
+		annotation SummarizationSetBy = Automatic
+
+	column Q2Ms
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 080b22a9-54df-5f68-9db1-19c6a747ee82
+		summarizeBy: none
+		sourceColumn: Q2Ms
+
+		annotation SummarizationSetBy = Automatic
+
+	column Q3Ms
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 3cccaba3-83b2-5b9e-a066-536af749e3bd
+		summarizeBy: none
+		sourceColumn: Q3Ms
+
+		annotation SummarizationSetBy = Automatic
+
+	column GapToPoleMs
+		dataType: double
+		formatString: 0
+		isHidden
+		lineageTag: 0efc0b2d-2860-5a9c-b005-5b9bfbe71251
+		summarizeBy: none
+		sourceColumn: GapToPoleMs
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReachedQ3
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: a9a01809-cc54-5ec3-bab3-77ddb76a4e81
+		summarizeBy: none
+		sourceColumn: ReachedQ3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Qualifying = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_Qualifying.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"DriverId", type text}, {"ConstructorId", type text}, {"QualiPosition", Int64.Type}, {"BestQualiMs", type number}, {"Q1Ms", type number}, {"Q2Ms", type number}, {"Q3Ms", type number}, {"GapToPoleMs", type number}, {"ReachedQ3", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,26 @@
+APEX, Formula 1 Intelligence
+Copyright (c) 2026 Abdoul Hamid Diallo
+
+This project bundles third-party data so that it rebuilds offline:
+
+f1db, the open Formula 1 database
+  https://github.com/f1db/f1db, release v2026.13.0 (f1db-csv.zip)
+  Licence: Creative Commons Attribution 4.0 International (CC BY 4.0)
+  The archive is redistributed unmodified. Every figure shown by the report
+  (results, standings, qualifying, sprints, fastest laps, pit stops) derives
+  from it.
+
+f1-circuits, Formula 1 circuit geometry
+  https://github.com/bacinger/f1-circuits (Tomislav Bacinger), f1-circuits.geojson
+  Licence: MIT
+  The circuit outlines drawn on the Classic Eleven and Circuit Lab pages are
+  projected from this file.
+
+Team logos (assets/logos)
+  Trademarks and copyrights belong to the respective Formula 1 teams. They are
+  used solely to identify the teams in an analytical, non-commercial report.
+  Remove the folder to build the report with generated crests instead.
+
+Formula 1, F1 and related marks are trademarks of Formula One Licensing B.V.
+This project is an independent work and is not affiliated with, endorsed by
+or connected to Formula One Licensing B.V., the FIA or any team.

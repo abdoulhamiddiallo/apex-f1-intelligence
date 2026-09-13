@@ -1,0 +1,41 @@
+table D_Metric
+	lineageTag: fc910179-cf54-5123-8e6b-04f2694fb931
+
+	column Metric
+		dataType: string
+		lineageTag: f8df4932-de07-5920-aa9b-3151b6c8489b
+		summarizeBy: none
+		sourceColumn: Metric
+		sortByColumn: MetricOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricDesc
+		dataType: string
+		lineageTag: 2d85297a-c3f5-569b-9114-c0fd8cf98623
+		summarizeBy: none
+		sourceColumn: MetricDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricOrder
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: a3a55d6d-664d-56c4-8ed8-f8f3f9a35cee
+		summarizeBy: none
+		sourceColumn: MetricOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Metric = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Metric.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"Metric", type text}, {"MetricDesc", type text}, {"MetricOrder", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

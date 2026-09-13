@@ -1,0 +1,91 @@
+table F_ConstructorStanding
+	lineageTag: 53530133-0184-5fbb-ad62-5cd69da60701
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b2a9263a-daad-53e8-afed-4c88f1a3ed91
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f61d3b7d-27f6-5c10-a0ca-26d23760dcfd
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Round
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 0357d300-28dc-594e-b154-f15460f32c37
+		summarizeBy: none
+		sourceColumn: Round
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorId
+		dataType: string
+		isHidden
+		lineageTag: 9dc06d7b-1f1a-5f30-9004-920d65628674
+		summarizeBy: none
+		sourceColumn: ConstructorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandingPoints
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 2cbc4352-b849-59d7-8eb5-23329ecdad91
+		summarizeBy: none
+		sourceColumn: StandingPoints
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandingPosition
+		dataType: int64
+		formatString: 0
+		lineageTag: 1de78841-09ce-564e-91c7-e60e6fa413ff
+		summarizeBy: none
+		sourceColumn: StandingPosition
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChampionshipWon
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 061e2d78-7fc5-51e9-8f45-b20c14524ee0
+		summarizeBy: none
+		sourceColumn: ChampionshipWon
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsLatestRound
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b8746cb6-d698-5efc-adcb-2e9c54d26c56
+		summarizeBy: none
+		sourceColumn: IsLatestRound
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_ConstructorStanding = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_ConstructorStanding.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"Round", Int64.Type}, {"ConstructorId", type text}, {"StandingPoints", type number}, {"StandingPosition", Int64.Type}, {"ChampionshipWon", Int64.Type}, {"IsLatestRound", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

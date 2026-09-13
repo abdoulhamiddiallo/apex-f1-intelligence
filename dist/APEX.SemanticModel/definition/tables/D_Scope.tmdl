@@ -1,0 +1,41 @@
+table D_Scope
+	lineageTag: 4b414995-7084-52a3-bd4f-696594d6ec86
+
+	column Scope
+		dataType: string
+		lineageTag: 1365f7c3-911d-544f-b261-fd57f8d2e20f
+		summarizeBy: none
+		sourceColumn: Scope
+		sortByColumn: ScopeOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScopeDesc
+		dataType: string
+		lineageTag: 40102700-d62a-5c65-92ad-68c97d63a965
+		summarizeBy: none
+		sourceColumn: ScopeDesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScopeOrder
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1f8164e8-4875-5028-b352-44d3a6cd7850
+		summarizeBy: none
+		sourceColumn: ScopeOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Scope = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Scope.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"Scope", type text}, {"ScopeDesc", type text}, {"ScopeOrder", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

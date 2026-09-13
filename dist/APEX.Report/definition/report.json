@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "Fluent2-CY26SU08",
+      "reportVersionAtImport": {
+        "visual": "2.12.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "ThemeApex",
+      "reportVersionAtImport": {
+        "visual": "2.12.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "Fluent2-CY26SU08",
+          "path": "BaseThemes/Fluent2-CY26SU08.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "bg.png",
+          "path": "bg.png",
+          "type": "Image"
+        },
+        {
+          "name": "mark.png",
+          "path": "mark.png",
+          "type": "Image"
+        },
+        {
+          "name": "accent_red.png",
+          "path": "accent_red.png",
+          "type": "Image"
+        },
+        {
+          "name": "accent_cyan.png",
+          "path": "accent_cyan.png",
+          "type": "Image"
+        },
+        {
+          "name": "accent_amber.png",
+          "path": "accent_amber.png",
+          "type": "Image"
+        },
+        {
+          "name": "accent_line.png",
+          "path": "accent_line.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_pulse_on.png",
+          "path": "ic_pulse_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_pulse_off.png",
+          "path": "ic_pulse_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_circuit_on.png",
+          "path": "ic_circuit_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_circuit_off.png",
+          "path": "ic_circuit_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_lab_on.png",
+          "path": "ic_lab_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_lab_off.png",
+          "path": "ic_lab_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_driver_on.png",
+          "path": "ic_driver_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_driver_off.png",
+          "path": "ic_driver_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_team_on.png",
+          "path": "ic_team_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_team_off.png",
+          "path": "ic_team_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_era_on.png",
+          "path": "ic_era_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_era_off.png",
+          "path": "ic_era_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_flag_on.png",
+          "path": "ic_flag_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_flag_off.png",
+          "path": "ic_flag_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_garage_on.png",
+          "path": "ic_garage_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_garage_off.png",
+          "path": "ic_garage_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_globe_on.png",
+          "path": "ic_globe_on.png",
+          "type": "Image"
+        },
+        {
+          "name": "ic_globe_off.png",
+          "path": "ic_globe_off.png",
+          "type": "Image"
+        },
+        {
+          "name": "ThemeApex",
+          "path": "ThemeApex",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

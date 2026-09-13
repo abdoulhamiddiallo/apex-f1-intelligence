@@ -1,0 +1,250 @@
+table D_Race
+	lineageTag: 60621fa4-aaf9-5afa-82f8-0b0979edbb7c
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 36f1f401-1674-5638-891e-3cdb0dd434ea
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: ce547d77-4989-5d75-8870-577a9bbac249
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Round
+		dataType: int64
+		formatString: 0
+		lineageTag: 946e3e25-ff5b-5fef-b587-c6230607ac68
+		summarizeBy: none
+		sourceColumn: Round
+
+		annotation SummarizationSetBy = Automatic
+
+	column RaceDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 5eeb972a-8b7b-562e-9a58-ec6e93a8d396
+		summarizeBy: none
+		sourceColumn: RaceDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrandPrix
+		dataType: string
+		lineageTag: 25e7fb46-60cf-5fd3-91f0-90f60e331d63
+		summarizeBy: none
+		sourceColumn: GrandPrix
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrandPrixShort
+		dataType: string
+		lineageTag: 94c6bb11-20d7-5141-b0ae-0eb7947f362e
+		summarizeBy: none
+		sourceColumn: GrandPrixShort
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrandPrixAbbr
+		dataType: string
+		isHidden
+		lineageTag: 1060693a-8bca-59b8-9484-61f7b748296a
+		summarizeBy: none
+		sourceColumn: GrandPrixAbbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column OfficialName
+		dataType: string
+		lineageTag: 8f93292d-c438-51b2-aecf-013b03298d3a
+		summarizeBy: none
+		sourceColumn: OfficialName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CircuitId
+		dataType: string
+		isHidden
+		lineageTag: ebec83db-8cf5-5440-b304-9e47851effbe
+		summarizeBy: none
+		sourceColumn: CircuitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Circuit
+		dataType: string
+		lineageTag: 3976523b-26a8-5d1d-96db-f0c434defa3e
+		summarizeBy: none
+		sourceColumn: Circuit
+
+		annotation SummarizationSetBy = Automatic
+
+	column CircuitFullName
+		dataType: string
+		lineageTag: d2e839d0-2b97-5257-9ed3-56be7e78d01d
+		summarizeBy: none
+		sourceColumn: CircuitFullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryId
+		dataType: string
+		isHidden
+		lineageTag: 0fe4fd59-f4c0-50e3-a3f9-864dc6451c7e
+		summarizeBy: none
+		sourceColumn: CountryId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 73a84a57-55b3-52f5-b8a2-6c87f07b9833
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		isHidden
+		lineageTag: 1046599a-ce4e-5bff-b901-122f0f3c12a7
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Laps
+		dataType: int64
+		formatString: 0
+		lineageTag: 92cb2fef-4e58-5d69-9ab0-e395b4cf0b7e
+		summarizeBy: none
+		sourceColumn: Laps
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistanceKm
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 0d76c4f2-fce6-5fa7-927c-547f27062a70
+		summarizeBy: none
+		sourceColumn: DistanceKm
+
+		annotation SummarizationSetBy = Automatic
+
+	column CourseLengthKm
+		dataType: double
+		formatString: 0.000
+		lineageTag: 5658c437-8b0c-5e9a-9ec9-48f02ba76417
+		summarizeBy: none
+		sourceColumn: CourseLengthKm
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turns
+		dataType: int64
+		formatString: 0
+		lineageTag: f56420b9-e6da-5c99-9d86-465bc80de323
+		summarizeBy: none
+		sourceColumn: Turns
+
+		annotation SummarizationSetBy = Automatic
+
+	column CircuitType
+		dataType: string
+		lineageTag: 89192093-baab-5cf4-b8c1-a874b45ff089
+		summarizeBy: none
+		sourceColumn: CircuitType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Direction
+		dataType: string
+		lineageTag: 6ed46b2e-fa1f-548f-9238-6739fd012cd5
+		summarizeBy: none
+		sourceColumn: Direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasSprint
+		dataType: int64
+		formatString: 0
+		lineageTag: ae98128a-0a08-5a03-8d7f-215af2a42424
+		summarizeBy: none
+		sourceColumn: HasSprint
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsRun
+		dataType: int64
+		formatString: 0
+		lineageTag: adac4df2-7372-5448-b7de-2f493a175eda
+		summarizeBy: none
+		sourceColumn: IsRun
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsClassicCircuit
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f9b5cfb-d74a-5e28-a1a8-c5e50f94f16e
+		summarizeBy: none
+		sourceColumn: IsClassicCircuit
+
+		annotation SummarizationSetBy = Automatic
+
+	column RaceLabel
+		dataType: string
+		lineageTag: ba768f13-8be8-5e34-beef-84af98a9bd2b
+		summarizeBy: none
+		sourceColumn: RaceLabel
+		sortByColumn: SortKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoundLabel
+		dataType: string
+		lineageTag: 2880912b-a693-5ece-aaff-cbd7ef158ea9
+		summarizeBy: none
+		sourceColumn: RoundLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 3fbfed30-c819-5c4c-a5cc-e3f194ede1c0
+		summarizeBy: none
+		sourceColumn: SortKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TitleDecider
+		dataType: int64
+		formatString: 0
+		lineageTag: e0149445-e417-518c-9f64-6ff4b232ef8d
+		summarizeBy: none
+		sourceColumn: TitleDecider
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Race = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Race.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"Round", Int64.Type}, {"RaceDate", type date}, {"GrandPrix", type text}, {"GrandPrixShort", type text}, {"GrandPrixAbbr", type text}, {"OfficialName", type text}, {"CircuitId", type text}, {"Circuit", type text}, {"CircuitFullName", type text}, {"CountryId", type text}, {"Country", type text}, {"CountryCode", type text}, {"Laps", Int64.Type}, {"DistanceKm", type number}, {"CourseLengthKm", type number}, {"Turns", Int64.Type}, {"CircuitType", type text}, {"Direction", type text}, {"HasSprint", Int64.Type}, {"IsRun", Int64.Type}, {"IsClassicCircuit", Int64.Type}, {"RaceLabel", type text}, {"RoundLabel", type text}, {"SortKey", Int64.Type}, {"TitleDecider", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,99 @@
+table F_Sprint
+	lineageTag: 037b0e28-84dc-59a8-a4e3-753c5f6d8fa4
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: dbbbaadd-964d-5898-832b-5b3c5205d095
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: ccd6d3b0-b1aa-5c14-a892-bfc8b0488b9d
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriverId
+		dataType: string
+		isHidden
+		lineageTag: 5a557ad4-38aa-5484-b9aa-4b0bb3a398f7
+		summarizeBy: none
+		sourceColumn: DriverId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorId
+		dataType: string
+		isHidden
+		lineageTag: a212720b-63b1-5009-a411-4d15ec28e7be
+		summarizeBy: none
+		sourceColumn: ConstructorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SprintPosition
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f7f90e5-6ea7-54af-ade7-00586d93a722
+		summarizeBy: none
+		sourceColumn: SprintPosition
+
+		annotation SummarizationSetBy = Automatic
+
+	column SprintPoints
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 748f6d10-7801-5c99-a205-a3c60461e0b2
+		summarizeBy: sum
+		sourceColumn: SprintPoints
+
+		annotation SummarizationSetBy = Automatic
+
+	column SprintGrid
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ae858fe-36cf-55b7-8f83-4320456fc5df
+		summarizeBy: none
+		sourceColumn: SprintGrid
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSprintWin
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1caf33fa-b1cd-5c2e-8e63-1feb8c211f0d
+		summarizeBy: none
+		sourceColumn: IsSprintWin
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSprintPodium
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: c2f64c48-6915-594c-b979-6d2c0cf2f3f1
+		summarizeBy: none
+		sourceColumn: IsSprintPodium
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Sprint = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_Sprint.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"DriverId", type text}, {"ConstructorId", type text}, {"SprintPosition", Int64.Type}, {"SprintPoints", type number}, {"SprintGrid", Int64.Type}, {"IsSprintWin", Int64.Type}, {"IsSprintPodium", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

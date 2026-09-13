@@ -1,0 +1,65 @@
+name: build
+
+# Rebuilds the whole Power BI project from the committed inputs on a clean runner.
+# The job fails on any structural defect (truncated header, broken DAX reference,
+# missing resource, non-integer font size, ...) and whenever the committed dist/
+# differs from the rebuild, byte for byte.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    name: Rebuild from scratch, validate, prove reproducibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install the Cairo rasteriser
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libcairo2
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Verify the bundled data archive
+        run: sha256sum -c data/raw/SHA256SUMS
+
+      - name: Build twice from scratch and validate
+        run: python build.py --clean --check
+
+      - name: Committed output must equal the rebuild
+        run: |
+          git add -N dist
+          git diff --stat --exit-code -- dist
+          test -z "$(git status --porcelain -- dist)"
+
+      - name: Documentation generated from the model must be current
+        run: |
+          python tools/measures_catalog.py
+          git diff --exit-code -- docs/measures.md
+
+      - name: Repository rules (language, dashes, paths)
+        run: python tools/repo_lint.py
+
+      - name: Upload the Power BI project
+        uses: actions/upload-artifact@v4
+        with:
+          name: APEX-pbip
+          path: dist
+          if-no-files-found: error

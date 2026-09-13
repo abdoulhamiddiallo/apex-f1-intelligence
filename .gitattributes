@@ -1,0 +1,21 @@
+# One line ending everywhere so the committed output stays bit-identical to a rebuild
+* text=auto eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.tmdl text eol=lf
+*.pbip text eol=lf
+*.pbir text eol=lf
+*.pbism text eol=lf
+*.platform text eol=lf
+*.csv text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.geojson text eol=lf
+
+# binaries
+*.png binary
+*.zip binary
+*.pdf binary
+
+# keep GitHub's language statistics honest: dist/ is generated
+dist/** linguist-generated=true

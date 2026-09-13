@@ -1,0 +1,6 @@
+/// Folder holding the CSV files that feed the model. Change this parameter if you move the project.
+expression DataFolder = "C:\apex-f1-intelligence\dist\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 70c922ab-b2cf-503d-b4c3-a25395c10c7a
+
+	annotation PBI_ResultType = Text
+

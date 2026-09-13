@@ -1,0 +1,39 @@
+table D_Engine
+	lineageTag: 1e043dc6-abcf-59c7-82ef-ea95a08b516f
+
+	column EngineId
+		dataType: string
+		isHidden
+		lineageTag: 240b0fad-2f31-5e50-836c-171e71d6a15a
+		summarizeBy: none
+		sourceColumn: EngineId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engine
+		dataType: string
+		lineageTag: aee522c2-fea4-5353-a241-dfe5caa7a6ba
+		summarizeBy: none
+		sourceColumn: Engine
+
+		annotation SummarizationSetBy = Automatic
+
+	column EngineCountry
+		dataType: string
+		lineageTag: b4fd181f-3b7a-59e8-a3cb-543b2afb544b
+		summarizeBy: none
+		sourceColumn: EngineCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Engine = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Engine.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"EngineId", type text}, {"Engine", type text}, {"EngineCountry", type text}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,172 @@
+table D_Constructor
+	lineageTag: 9434bea0-99a2-52c6-9098-300f0de79f1a
+
+	column ConstructorId
+		dataType: string
+		isHidden
+		lineageTag: 70ae3163-dfc7-5c77-b471-86607ce99224
+		summarizeBy: none
+		sourceColumn: ConstructorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: 14d4c837-595a-59b0-baf1-55aed964bc7e
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column TeamFullName
+		dataType: string
+		lineageTag: aa650b36-2ea0-5dcb-a25c-07013e6cc333
+		summarizeBy: none
+		sourceColumn: TeamFullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryId
+		dataType: string
+		isHidden
+		lineageTag: 2050ebe8-f898-5597-83b7-ef3c45d59ed8
+		summarizeBy: none
+		sourceColumn: CountryId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 69adea7b-aa50-5214-afc2-a61859dcbae1
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		isHidden
+		lineageTag: ee04f4ec-10bf-56fc-aed1-81d742980cc4
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column TeamColour
+		dataType: string
+		lineageTag: edf0bbcb-ef35-5bc7-b31f-1173cfdee56a
+		summarizeBy: none
+		sourceColumn: TeamColour
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstYearInEra
+		dataType: int64
+		formatString: 0
+		lineageTag: c346f064-9d13-5fcb-a2df-ecaf50e895a8
+		summarizeBy: none
+		sourceColumn: FirstYearInEra
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastYearInEra
+		dataType: int64
+		formatString: 0
+		lineageTag: a528ba2c-a82f-5b4c-8dff-4e4b52993b71
+		summarizeBy: none
+		sourceColumn: LastYearInEra
+
+		annotation SummarizationSetBy = Automatic
+
+	column SeasonsInEra
+		dataType: int64
+		formatString: 0
+		lineageTag: b26f6320-ea56-5e1c-87c9-e68405ba4b76
+		summarizeBy: none
+		sourceColumn: SeasonsInEra
+
+		annotation SummarizationSetBy = Automatic
+
+	column StillRacing
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dffe321-1147-5d3b-b64c-d3dc4c7b2e81
+		summarizeBy: none
+		sourceColumn: StillRacing
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerWins
+		dataType: int64
+		formatString: #,0
+		lineageTag: e3100e33-c4bf-5e4b-9ca5-37a221dccf82
+		summarizeBy: sum
+		sourceColumn: CareerWins
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerTitles
+		dataType: int64
+		formatString: 0
+		lineageTag: 118de01d-12cb-53bc-a973-7562d33d60ea
+		summarizeBy: sum
+		sourceColumn: CareerTitles
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerPodiums
+		dataType: int64
+		formatString: #,0
+		lineageTag: 70b881ac-eaa1-5cc3-bfaf-587fed540939
+		summarizeBy: sum
+		sourceColumn: CareerPodiums
+
+		annotation SummarizationSetBy = Automatic
+
+	column CareerPoles
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3a01a367-a777-5f7e-9b49-fe1ae689f67e
+		summarizeBy: sum
+		sourceColumn: CareerPoles
+
+		annotation SummarizationSetBy = Automatic
+
+	column TeamBadge
+		dataType: string
+		lineageTag: f68a3deb-82a5-5dc1-be6c-1a1ddb40b511
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: TeamBadge
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlagSvg
+		dataType: string
+		lineageTag: ecf21e57-f1a0-5005-a8f9-1f6b660899e0
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: FlagSvg
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarSvg
+		dataType: string
+		lineageTag: be373daf-31b0-5d13-8e7f-4859e264c9b4
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: CarSvg
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Constructor = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Constructor.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"ConstructorId", type text}, {"Team", type text}, {"TeamFullName", type text}, {"CountryId", type text}, {"Country", type text}, {"CountryCode", type text}, {"TeamColour", type text}, {"FirstYearInEra", Int64.Type}, {"LastYearInEra", Int64.Type}, {"SeasonsInEra", Int64.Type}, {"StillRacing", Int64.Type}, {"CareerWins", Int64.Type}, {"CareerTitles", Int64.Type}, {"CareerPodiums", Int64.Type}, {"CareerPoles", Int64.Type}, {"TeamBadge", type text}, {"FlagSvg", type text}, {"CarSvg", type text}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

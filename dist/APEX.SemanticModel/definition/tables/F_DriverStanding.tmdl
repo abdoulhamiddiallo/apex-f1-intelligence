@@ -1,0 +1,91 @@
+table F_DriverStanding
+	lineageTag: 013c4b82-a76c-568a-82e0-c5d330593307
+
+	column RaceKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: c9694711-f08b-5ba9-9eaf-f6fdee0f702d
+		summarizeBy: none
+		sourceColumn: RaceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 6d37dd26-f597-531e-b06c-a41b8472fa3b
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Round
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 93b6daa2-20dc-587d-a6f1-3989e2d15cbf
+		summarizeBy: none
+		sourceColumn: Round
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriverId
+		dataType: string
+		isHidden
+		lineageTag: a28df952-858d-585e-8b96-e41b8b8db09f
+		summarizeBy: none
+		sourceColumn: DriverId
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandingPoints
+		dataType: double
+		formatString: #,0.##
+		lineageTag: 81a6a83f-baf0-53fa-bc0c-5a7281ae52fa
+		summarizeBy: none
+		sourceColumn: StandingPoints
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandingPosition
+		dataType: int64
+		formatString: 0
+		lineageTag: 43e72452-85de-501a-815a-5a52b0b0646e
+		summarizeBy: none
+		sourceColumn: StandingPosition
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChampionshipWon
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: bdb89e47-2574-5771-8dfd-61b189c519ea
+		summarizeBy: none
+		sourceColumn: ChampionshipWon
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsLatestRound
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: d14f69c1-c65d-5897-ac5f-2288c5443d6c
+		summarizeBy: none
+		sourceColumn: IsLatestRound
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_DriverStanding = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\F_DriverStanding.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"RaceKey", Int64.Type}, {"Year", Int64.Type}, {"Round", Int64.Type}, {"DriverId", type text}, {"StandingPoints", type number}, {"StandingPosition", Int64.Type}, {"ChampionshipWon", Int64.Type}, {"IsLatestRound", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

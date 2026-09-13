@@ -1,0 +1,235 @@
+table D_Circuit
+	lineageTag: 8405efc0-2ba3-5df8-b8b9-d5ee1995684c
+
+	column CircuitId
+		dataType: string
+		isHidden
+		lineageTag: acb97da9-888a-5b72-89a9-08c9afdc317f
+		summarizeBy: none
+		sourceColumn: CircuitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Circuit
+		dataType: string
+		lineageTag: 6339cf16-0e4d-5fb9-91fe-0fc163c9c606
+		summarizeBy: none
+		sourceColumn: Circuit
+
+		annotation SummarizationSetBy = Automatic
+
+	column CircuitFullName
+		dataType: string
+		lineageTag: 5cc88fa8-87b7-5bc8-84f1-383c4318998d
+		summarizeBy: none
+		sourceColumn: CircuitFullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Place
+		dataType: string
+		lineageTag: 10f01235-6c73-5315-a3df-389cde770521
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: Place
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryId
+		dataType: string
+		isHidden
+		lineageTag: 8831aa5b-f411-5331-9d36-a418e481a393
+		summarizeBy: none
+		sourceColumn: CountryId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 6d4b98bc-deb0-59df-a347-9cc076fb9683
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		isHidden
+		lineageTag: a4e8b974-8d20-5523-b93f-c39e43880320
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column IOC
+		dataType: string
+		isHidden
+		lineageTag: 6c0b8671-33ea-5ada-9ca7-230dd897436d
+		summarizeBy: none
+		sourceColumn: IOC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 923b20f9-a7f5-5c8b-bc21-a8405e4f6b6b
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 1f4e37a5-a37b-592c-a9cb-3d67cd64450b
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column LengthKm
+		dataType: double
+		formatString: 0.000
+		lineageTag: a6385031-925a-5014-89c0-944605588284
+		summarizeBy: none
+		sourceColumn: LengthKm
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turns
+		dataType: int64
+		formatString: 0
+		lineageTag: d7d3b7f8-93ef-5162-b72a-1b1c4e8256c4
+		summarizeBy: none
+		sourceColumn: Turns
+
+		annotation SummarizationSetBy = Automatic
+
+	column CircuitType
+		dataType: string
+		lineageTag: 6975c583-2602-5788-a60a-c7f27bfbdd0d
+		summarizeBy: none
+		sourceColumn: CircuitType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Direction
+		dataType: string
+		lineageTag: 93043242-1f15-5583-bd88-b6601a862a25
+		summarizeBy: none
+		sourceColumn: Direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column RacesHeldAllTime
+		dataType: int64
+		formatString: 0
+		lineageTag: 76dce3c9-0b51-5995-a945-58b095db206e
+		summarizeBy: none
+		sourceColumn: RacesHeldAllTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column RacesInEra
+		dataType: int64
+		formatString: 0
+		lineageTag: 532644a7-40ac-5efc-bffb-a4234cc340f8
+		summarizeBy: none
+		sourceColumn: RacesInEra
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstGrandPrix
+		dataType: int64
+		formatString: 0
+		lineageTag: e466328f-4280-5855-8b61-4d3df247e717
+		summarizeBy: none
+		sourceColumn: FirstGrandPrix
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsClassic
+		dataType: int64
+		formatString: 0
+		lineageTag: 62a4eeda-7254-5d70-9b23-7fcbef662a5c
+		summarizeBy: none
+		sourceColumn: IsClassic
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClassicRank
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 5f3a3843-d3e9-5961-8eb4-837b470d135a
+		summarizeBy: none
+		sourceColumn: ClassicRank
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nickname
+		dataType: string
+		lineageTag: befbfdff-2fe3-576a-a8dd-fa5ded0172a2
+		summarizeBy: none
+		sourceColumn: Nickname
+
+		annotation SummarizationSetBy = Automatic
+
+	column SignatureCorner
+		dataType: string
+		lineageTag: 4ab489b2-f8fa-5cad-a13b-a520eabc0bbc
+		summarizeBy: none
+		sourceColumn: SignatureCorner
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackSvg
+		dataType: string
+		lineageTag: 8adbe836-1a3d-5d4f-87df-2c1750661e97
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: TrackSvg
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackSvgLarge
+		dataType: string
+		lineageTag: 6fbe76e8-43c4-5471-b59c-cedc433c34f0
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: TrackSvgLarge
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlagSvg
+		dataType: string
+		lineageTag: d1a9b50f-981b-5abd-9a0b-b64f41415ae0
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: FlagSvg
+
+		annotation SummarizationSetBy = Automatic
+
+	column CircuitDisplay
+		dataType: string
+		lineageTag: 2231a417-563e-509e-b9c9-43928db47eea
+		summarizeBy: none
+		sourceColumn: CircuitDisplay
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Circuit = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Circuit.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"CircuitId", type text}, {"Circuit", type text}, {"CircuitFullName", type text}, {"Place", type text}, {"CountryId", type text}, {"Country", type text}, {"CountryCode", type text}, {"IOC", type text}, {"Latitude", type number}, {"Longitude", type number}, {"LengthKm", type number}, {"Turns", Int64.Type}, {"CircuitType", type text}, {"Direction", type text}, {"RacesHeldAllTime", Int64.Type}, {"RacesInEra", Int64.Type}, {"FirstGrandPrix", Int64.Type}, {"IsClassic", Int64.Type}, {"ClassicRank", Int64.Type}, {"Nickname", type text}, {"SignatureCorner", type text}, {"TrackSvg", type text}, {"TrackSvgLarge", type text}, {"FlagSvg", type text}, {"CircuitDisplay", type text}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table

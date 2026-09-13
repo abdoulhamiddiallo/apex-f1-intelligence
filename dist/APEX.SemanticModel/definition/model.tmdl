@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["D_Season", "D_Race", "D_Circuit", "D_Driver", "D_Constructor", "D_Engine", "D_Metric", "D_Scope", "F_Result", "F_Qualifying", "F_FastestLap", "F_DriverStanding", "F_ConstructorStanding", "F_Sprint", "F_TrackPoint", "DataFolder"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table D_Season
+ref table D_Race
+ref table D_Circuit
+ref table D_Driver
+ref table D_Constructor
+ref table D_Engine
+ref table D_Metric
+ref table D_Scope
+ref table F_Result
+ref table F_Qualifying
+ref table F_FastestLap
+ref table F_DriverStanding
+ref table F_ConstructorStanding
+ref table F_Sprint
+ref table F_TrackPoint
+ref table Metrics

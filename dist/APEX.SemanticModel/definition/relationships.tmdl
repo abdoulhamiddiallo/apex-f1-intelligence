@@ -1,0 +1,79 @@
+relationship c9c610a5-6a71-5074-9754-53d04f5738db
+	fromColumn: F_Result.RaceKey
+	toColumn: D_Race.RaceKey
+
+relationship ca4cd4df-4dd0-53ac-8d23-9d675d979a50
+	fromColumn: F_Result.DriverId
+	toColumn: D_Driver.DriverId
+
+relationship 22c46626-e6e5-5d5e-b0f6-082e0b53f95c
+	fromColumn: F_Result.ConstructorId
+	toColumn: D_Constructor.ConstructorId
+
+relationship 2eb30de5-0c74-50ed-bf2a-1db14a28ad2f
+	fromColumn: F_Result.EngineId
+	toColumn: D_Engine.EngineId
+
+relationship 0e4ff7d9-f055-5405-a63a-225b5e8293f8
+	fromColumn: F_Qualifying.RaceKey
+	toColumn: D_Race.RaceKey
+
+relationship f8dea31f-0457-57e4-8932-17649bb28214
+	fromColumn: F_Qualifying.DriverId
+	toColumn: D_Driver.DriverId
+
+relationship e4255822-9786-54d0-b50a-2d611a7c6a97
+	fromColumn: F_Qualifying.ConstructorId
+	toColumn: D_Constructor.ConstructorId
+
+relationship fea91d9d-560b-5926-8fba-f8db48cdf226
+	fromColumn: F_FastestLap.RaceKey
+	toColumn: D_Race.RaceKey
+
+relationship 1fc84ae6-8cbe-5be3-a6f2-95c91e4bb5d8
+	fromColumn: F_FastestLap.DriverId
+	toColumn: D_Driver.DriverId
+
+relationship 19a78c2e-da01-59f4-a13c-2e869408789c
+	fromColumn: F_FastestLap.ConstructorId
+	toColumn: D_Constructor.ConstructorId
+
+relationship b853fc52-adec-5f5c-9b01-9d1397cc4307
+	fromColumn: F_DriverStanding.RaceKey
+	toColumn: D_Race.RaceKey
+
+relationship f8fbdc41-d8ff-5a35-826a-5d1ba6c62c01
+	fromColumn: F_DriverStanding.DriverId
+	toColumn: D_Driver.DriverId
+
+relationship cad8173d-e53a-5354-a7a7-1647829f6b13
+	fromColumn: F_ConstructorStanding.RaceKey
+	toColumn: D_Race.RaceKey
+
+relationship 1a80e030-4530-58f0-84cc-3b682976bdea
+	fromColumn: F_ConstructorStanding.ConstructorId
+	toColumn: D_Constructor.ConstructorId
+
+relationship 1308238a-da8e-5712-a9e3-8f54c5d50503
+	fromColumn: F_Sprint.RaceKey
+	toColumn: D_Race.RaceKey
+
+relationship 1a666068-8aa8-550d-84c4-f19b3909c928
+	fromColumn: F_Sprint.DriverId
+	toColumn: D_Driver.DriverId
+
+relationship ab7b4235-6394-5e94-9853-e70511b55130
+	fromColumn: F_Sprint.ConstructorId
+	toColumn: D_Constructor.ConstructorId
+
+relationship e29884cd-e6a1-526b-95c9-a2769c8027b6
+	fromColumn: D_Race.CircuitId
+	toColumn: D_Circuit.CircuitId
+
+relationship 492ebc54-f8ac-574f-9792-35156bca8760
+	fromColumn: D_Race.Year
+	toColumn: D_Season.Year
+
+relationship 8c111742-e5b8-56fb-8b23-95aa382bc43a
+	fromColumn: F_TrackPoint.CircuitId
+	toColumn: D_Circuit.CircuitId

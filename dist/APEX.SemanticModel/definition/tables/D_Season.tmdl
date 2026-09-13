@@ -1,0 +1,149 @@
+table D_Season
+	lineageTag: 2c6dc41e-feae-5cbe-9a70-c64492bdef54
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f58067d-4055-5590-9625-1df001d7a786
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column SeasonLabel
+		dataType: string
+		lineageTag: 48c326bf-ca9d-514d-a61a-61a1dd1097ce
+		summarizeBy: none
+		sourceColumn: SeasonLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Era
+		dataType: string
+		lineageTag: 7c039eb6-2677-5c98-9995-0cf48a0531ee
+		summarizeBy: none
+		sourceColumn: Era
+		sortByColumn: EraOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column EraOrder
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: a67fe7d0-8966-5994-b731-f3efda76d549
+		summarizeBy: none
+		sourceColumn: EraOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoundsScheduled
+		dataType: int64
+		formatString: 0
+		lineageTag: 52a93f58-102f-5688-96c3-93dfca6e91e1
+		summarizeBy: none
+		sourceColumn: RoundsScheduled
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoundsRun
+		dataType: int64
+		formatString: 0
+		lineageTag: 3431784d-483c-522d-b0d5-1640b68ef500
+		summarizeBy: none
+		sourceColumn: RoundsRun
+
+		annotation SummarizationSetBy = Automatic
+
+	column SeasonComplete
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 9de550b3-2c67-59b3-a5f8-a32797825ec5
+		summarizeBy: none
+		sourceColumn: SeasonComplete
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCurrentSeason
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: b318346c-767d-5722-ae9e-d93457fa1e75
+		summarizeBy: none
+		sourceColumn: IsCurrentSeason
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriversChampionId
+		dataType: string
+		isHidden
+		lineageTag: 3de966d2-ba06-56ea-a225-abe9a2f3c768
+		summarizeBy: none
+		sourceColumn: DriversChampionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Champion
+		dataType: string
+		lineageTag: 36de2973-701d-5e10-b81f-6dd2a876aedc
+		summarizeBy: none
+		sourceColumn: DriversChampion
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriversChampionPoints
+		dataType: double
+		formatString: #,0
+		lineageTag: a8ad2a26-6096-5cde-9c89-1f095b3de6aa
+		summarizeBy: none
+		sourceColumn: DriversChampionPoints
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorsChampionId
+		dataType: string
+		isHidden
+		lineageTag: ffe0548a-c8e5-53d1-a716-fb98585293c0
+		summarizeBy: none
+		sourceColumn: ConstructorsChampionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Constructor champion'
+		dataType: string
+		lineageTag: 14b40465-8ef2-5a20-8d20-ff3808d27b90
+		summarizeBy: none
+		sourceColumn: ConstructorsChampion
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConstructorsChampionPoints
+		dataType: double
+		formatString: #,0
+		lineageTag: af7300da-c930-5145-969e-ea6aa9e3ab0d
+		summarizeBy: none
+		sourceColumn: ConstructorsChampionPoints
+
+		annotation SummarizationSetBy = Automatic
+
+	column SprintRaces
+		dataType: int64
+		formatString: 0
+		lineageTag: 743967ad-3a90-525c-9cc8-4df5c825483b
+		summarizeBy: none
+		sourceColumn: SprintRaces
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Season = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\D_Season.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Types = Table.TransformColumnTypes(Headers, {{"Year", Int64.Type}, {"SeasonLabel", type text}, {"Era", type text}, {"EraOrder", Int64.Type}, {"RoundsScheduled", Int64.Type}, {"RoundsRun", Int64.Type}, {"SeasonComplete", Int64.Type}, {"IsCurrentSeason", Int64.Type}, {"DriversChampionId", type text}, {"DriversChampion", type text}, {"DriversChampionPoints", type number}, {"ConstructorsChampionId", type text}, {"ConstructorsChampion", type text}, {"ConstructorsChampionPoints", type number}, {"SprintRaces", Int64.Type}}, "en-US")
+				in
+				    Types
+
+	annotation PBI_ResultType = Table
